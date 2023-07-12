@@ -115,7 +115,6 @@ public class MainWrapper {
     System.out.println(notResult);
     
     // 내일은 여기서부터!
-    
   }
   
   public static void main(String[] args) {
