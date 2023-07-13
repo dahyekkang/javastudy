@@ -51,11 +51,6 @@ public class MainWrapper {
     System.out.println(score);
     System.out.println(money);
     System.out.println(comm);
-    
-    
-    
-    
-    
-    
+
   }
 }
