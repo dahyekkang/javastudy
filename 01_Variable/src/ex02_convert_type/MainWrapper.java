@@ -40,13 +40,13 @@ public class MainWrapper {
      */
     
     String strScore = "100";
-    int score = Integer.parseInt(strScore);
+    int score = Integer.parseInt(strScore);     // 문자열 -> 정수(int)
     
     String strMoney = "10000000000";
-    long money = Long.parseLong(strMoney);
+    long money = Long.parseLong(strMoney);      // 문자열 -> 정수(long)
     
     String strComm = "0.5";
-    double comm = Double.parseDouble(strComm);
+    double comm = Double.parseDouble(strComm);  //문자열 -> 실수(double)
     
     System.out.println(score);
     System.out.println(money);

@@ -66,15 +66,15 @@ public class MainWrapper {
     // 대입 연산
     int a = 10;
     int b = a;
-    System.out.println(a);  // 10
-    System.out.println(b);  // 10
+    System.out.println(a);
+    System.out.println(b);
     
     // 복합 연산(복합 대입 연산)
     int x = 10;
     int y = 1;
     y += x;   // y = y + x;   y값을 x만큼 늘리기
-    System.out.println(x);  // 10
-    System.out.println(y);  // 11
+    System.out.println(x);
+    System.out.println(y);
     
   }
 
@@ -170,10 +170,10 @@ public class MainWrapper {
  
   
   public static void main(String[] args) {
-    // ex01 메소드 실행 부탁(메소드 호출)
-    // ex01();
+     //ex01 메소드 실행 부탁(메소드 호출)
+     //ex01();
     // ex02 메소드 호출
-    // ex02();
+     //ex02();
     // ex03 메소드 호출
     //ex03();
     // ex04 메소드 호출
@@ -181,7 +181,7 @@ public class MainWrapper {
     // ex05 메소드 호출
     //ex05();
     //ex06 메소드 호출
-    ex06();
+    //ex06();
   }
 
 }

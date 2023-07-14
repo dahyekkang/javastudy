@@ -15,7 +15,7 @@ public class MainWrapper {
     // x와 y값을 교환
     int x = 10;
     int y = 20;
-    int temp;
+    int temp;a
     temp = y;
     y = x;
     x = temp;
