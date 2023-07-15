@@ -73,12 +73,9 @@ public class MainWrapper {
     //System.out.print("*");  // *를 출력한 뒤 줄을 바꾸지 않는다.
     //System.out.println();   // 줄 바꾸기
     
-    for(int i = 1; i <= 5; i++) {
-      for(int j = 1; j <= i; j++) {
+    for(int i = 0; i < 5; i++) {
+      for(int j = 0; j <= i; j++) {
         System.out.print("*");
-      }
-      for(int j = 1; j <= 5 - i; j++) {
-        System.out.print(" ");
       }
       System.out.println();
     }
@@ -96,9 +93,6 @@ public class MainWrapper {
       for(int j = 1; j <= i; j++) {
         System.out.print("*");
       }
-      for(int j = 1; j <= 5 - i; j++) {
-        System.out.print(" ");
-      }
       System.out.println();
     }
   }
@@ -110,6 +104,7 @@ public class MainWrapper {
     //   *****
     //  *******
     // *********
+   
     for(int i = 1; i <= 5; i++) {
       for(int j = 4; j >= i; j--) {
         System.out.print(" ");
@@ -117,13 +112,10 @@ public class MainWrapper {
       for(int k = 1; k <= 2 * i - 1; k++) {
           System.out.print("*");
       }
-      for(int j = 4; j >= i; j--) {
-        System.out.print(" ");
-      }
       System.out.println();
     }
   }
-  
+ 
   public static void ex08() {
     // 삼각별 출력하기 - 4 (2중 loop)
     // *********
@@ -131,19 +123,19 @@ public class MainWrapper {
     //   *****
     //    ***
     //     *
-    for(int i = 5; i >= 1; i--) {
-      for(int j = 1; j <= 5 - i; j++) {
+    
+    
+    for(int i = 1; i <= 5; i++) {
+      for(int j = 1;j < i ; j++) {
         System.out.print(" ");
       }
-      for(int k = 1; k <= 2 * i - 1; k++) {
+      for(int k = 9; k >= 2 * i - 1; k--) {
         System.out.print("*");
-      }
-      for(int j = 1; j <= 5 - i; j++) {
-        System.out.print(" ");
       }
       System.out.println();
     }
   }
+
   
   public static void main(String[] args) {
     
@@ -153,7 +145,7 @@ public class MainWrapper {
     //ex04();
     //ex05();
     //ex06();
-    //ex07();
+    ex07();
     //ex08();
   }
   
