@@ -15,12 +15,12 @@ public class MainWrapper {
     // x와 y값을 교환
     int x = 10;
     int y = 20;
-    int temp;a
+    int temp;
     temp = y;
     y = x;
     x = temp;
     
-    System.out.println(x + ", " + y);
+    System.out.println("x = " + x + ", y = " + y);
     
     // 5% 이자 받으면 통장잔액이 얼마?(소수 이하는 버림)
     long balance = 123456L;  // 통장잔액
@@ -45,7 +45,7 @@ public class MainWrapper {
     // n의 "짝수", "홀수" 여부 출력
     int n = 3;
     String res1 = (n % 2 == 0) ? "짝수" : "홀수";  // "홀수"
-    System.out.println(n + "은/(는)" + res1 + "입니다.");
+    System.out.println(n + "은/(는) " + res1 + "입니다.");
     
 
     
