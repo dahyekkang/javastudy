@@ -167,6 +167,18 @@ public class MainWrapper {
     //    ***
     //     *
     
+    //      space/star = 123456789
+    // row = 1          *********    
+    // row = 2           *******
+    // row = 3            *****
+    // row = 4             ***
+    // row = 5              *
+    //
+    // row = 1, space = 1~0, star = 1~9
+    // row = 2, space = 1~1, star = 2~8
+    // row = 3, space = 1~2, star = 3~7
+    // row = 4, space = 1~3, star = 4~6
+    // row = 5, space = 1~4, star = 5~5
     
     for(int row = 1; row <= 5; row++) {
       for(int space = 1; space <= row - 1 ; space++) {
@@ -182,16 +194,16 @@ public class MainWrapper {
   
   public static void main(String[] args) {
     
-//    String str1 = String.format("%d", 10);
-//    String str2 = String.format("%3d", 10);
-//    String str3 = String.format("%4d", 10);
-//    
-//    String str4 = String.format("%-3d", 10);
-//    String str5 = String.format("%-4d", 10);
-//    
-//    System.out.print(str3 + str2 + str1);
-//    System.out.println();
-//    System.out.print(str5 + str4);
+    String str1 = String.format("%d", 10);
+    String str2 = String.format("%3d", 10);
+    String str3 = String.format("%4d", 10);
+    
+    String str4 = String.format("%-3d", 10);
+    String str5 = String.format("%-4d", 10);
+    
+    System.out.print(str3 + str2 + str1);
+    System.out.println();
+    System.out.print(str5 + str4);
     
     
     
@@ -202,7 +214,7 @@ public class MainWrapper {
     //ex05();
     //ex06();
     //ex07();
-    ex08();
+    //ex08();
   }
   
 }
