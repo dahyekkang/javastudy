@@ -71,9 +71,9 @@ public class MainWrapper {
     
     public static void ex03_2() {
       
-      //점수와 학년에 따른 학점
-      //1~3학년 : 60점 이상 합격, 아니면 불합격
-      //4~6학년 : 70점 이상 합격, 아니면 불합격
+      // 점수와 학년에 따른 학점
+      // 1~3학년 : 60점 이상 합격, 아니면 불합격
+      // 4~6학년 : 70점 이상 합격, 아니면 불합격
       int score = 100; // 점수
       int scYear = 1;  // 학년
       String pass;  // "합격", "불합격"
@@ -92,11 +92,11 @@ public class MainWrapper {
     }
     
   public static void ex04() {
-    //메뉴에 따른 가격
-    //아메리카노 : 2000
-    //카페라떼 : 2500
-    //밀크티 : 3000
-    //기타 : 5000
+    // 메뉴에 따른 가격
+    // 아메리카노 : 2000
+    // 카페라떼 : 2500
+    // 밀크티 : 3000
+    // 기타 : 5000
     String order = "아메리카노";
     int price;
     switch(order) {
@@ -218,7 +218,7 @@ public class MainWrapper {
   public static void ex08() {
     // 대소문자 변환 (구글링으로 아스키코드 검색 후 참고)
     char ch = 'A';  // 임의의 대문자 또는 소문자
-    if(ch >= 'A' && ch <= 'Z') {
+    if(ch >= 'A' && ch <= 'Z') {    // if(ch >= 65 && ch <= 90)
       ch += 32;
     } else if(ch >= 'a' && ch <= 'z') {
       ch -= 32;
@@ -228,16 +228,16 @@ public class MainWrapper {
   
   public static void main(String[] args) {
     
-    //ex01();
-    //ex02();
-    //ex03();
+    ex01();
+    ex02();
+    ex03();
     ex03_2();
-    //ex04();
-    //ex05();
-    //ex05_2();
-    //ex06();
-    //ex06_2();
-    //ex07();
-    //ex08();
+    ex04();
+    ex05();
+    ex05_2();
+    ex06();
+    ex06_2();
+    ex07();
+    ex08();
   }
 }
