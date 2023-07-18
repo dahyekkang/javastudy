@@ -83,7 +83,7 @@ public class MainWrapper {
     // 무한루프와 break를 이용한 1 ~ 10 출력하기
     int n = 1;
     while(true) {
-      if(n == 11) {
+      if(n > 10) {
         break;
       }
       System.out.println(n);
@@ -105,6 +105,7 @@ public class MainWrapper {
       System.out.println(n);
     }
   }
+  
   public static void ex07() {
     
     // 중첩(nested) for문
@@ -118,12 +119,12 @@ public class MainWrapper {
   }
   
   public static void main(String[] args) {
-    // ex01();
-    // ex02();
-    // ex03();
-    // ex04();
-    //ex05();
-    //ex06();
+    ex01();
+    ex02();
+    ex03();
+    ex04();
+    ex05();
+    ex06();
     ex07();
   }
 }

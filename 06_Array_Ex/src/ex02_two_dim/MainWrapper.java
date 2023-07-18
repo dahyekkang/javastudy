@@ -4,16 +4,25 @@ public class MainWrapper {
 
   public static void ex01() {
     // 2~9단까지 전체 구구단 결과 저장하고 출력하기
-    //  2   4   6   8  10  12  14  16  18
-    //  3   6   9  12  15  18  21  24  27
-    //  4   8  12  16  20  24  28  32  36
-    //  5  10  15  20  25  30  35  40  45
-    //  6  12  18  24  30  36  42  48  54
-    //  7  14  21  28  35  42  49  56  63
-    //  8  16  24  32  40  48  56  64  72
-    //  9  18  27  36  45  54  63  72  81
-    int[][] gugudan = new int[8][9];
+    //      0   1   2   3   4   5   6   7   8  <--- j
+    //  i
+    //  0   2   4   6   8  10  12  14  16  18
+    //  1   3   6   9  12  15  18  21  24  27
+    //  2   4   8  12  16  20  24  28  32  36
+    //  3   5  10  15  20  25  30  35  40  45
+    //  4   6  12  18  24  30  36  42  48  54
+    //  5   7  14  21  28  35  42  49  56  63
+    //  6   8  16  24  32  40  48  56  64  72
+    //  7   9  18  27  36  45  54  63  72  81
     
+    int[][] gugudan = new int[8][9];
+    for(int i = 0; i < gugudan.length; i++) {
+      for(int j = 0; j < gugudan[i].length; j++) {
+        gugudan[i][j] = (i + 2) * (j + 1);
+        System.out.print(String.format("%4d" , gugudan[i][j]));
+      }
+      System.out.println();
+    }
   }
   
   public static void ex02() {
@@ -35,7 +44,18 @@ public class MainWrapper {
         {3, 5},  // 401호, 402호
         {4, 4}   // 501호, 502호
     };
+    // apt[0][0] = 101호 = 3
+    // apt[0][1] = 102호 = 4
+    // apt[1][0] = 201호 = 2
+    // apt[1][1] = 202호 = 2
+    // ---------------------
+    // apt[i][j] = ((i + 1) * 100) + (j + 1)
     
+    for(int i = 0; i < apt.length; i++) {
+      for(int j = 0; j < apt[i].length; j++) {
+        System.out.println(((i + 1) * 100) + (j + 1) + "" + "호: " + apt[i][j] + "명");
+      }
+    }  
   }
   
   public static void ex03() {
@@ -52,7 +72,24 @@ public class MainWrapper {
         {3, 5},  // 4층
         {4, 4}   // 5층
     };
+    /*
+     * int total = 0;
+     * total = total + apt[0][0];
+     * total = total + apt[0][1];
+     * System.out.println("1층: " + total + "명");
+     * total = 0;
+     * total = total + apt[1][0];
+     * total = total + apt[1][1];
+     * System.out.println("2층: " + total + "명");
+     */
     
+    for(int i = 0; i < apt.length; i++) {
+      int total = 0;
+      for(int j = 0; j < apt[i].length; j++) {
+        total += apt[i][j];
+      }        
+      System.out.println((i + 1) + "층: " + total + "명");
+    }
   }
   
   public static void ex04() {
@@ -69,8 +106,15 @@ public class MainWrapper {
         {"사회", "한자", "수학", "국어", "영어"},
         {"음악", "국어", "윤리"},
         {"수학", "영어", "체육", "과학"}
-    };
+    };    
     
+    for(int i = 0; i < timeTable.length; i++) {
+      System.out.print(weekname[i] + ": ");
+      for(int j = 0; j < timeTable[i].length; j++) {
+        System.out.print(String.format("%3s", timeTable[i][j]));
+      }
+      System.out.println();
+    }
   }
 
   public static void ex05() {
@@ -94,11 +138,40 @@ public class MainWrapper {
         {0, 0, 1, 0, 0}
     };
     int[][] b = new int[5][5];
+    // a      -->   b
+    // [0][0]       [0][4]
+    // [0][1]       [1][4]
+    // [0][2]       [2][4]
+    // [0][3]       [3][4]
+    // [0][4]       [4][4]
+    //
+    // [1][0]       [0][3]
+    // [1][1]       [1][3]
+    // [1][2]       [2][3]
+    // [1][3]       [3][3]
+    // [1][4]       [4][3]
+    //----------------------
+    // [i][j] ----> [j][4-i]    
     
+    for(int i = 0; i < a.length; i++) {
+      for(int j = 0; j < a[i].length; j++) {
+        b[j][4-i] = a[i][j];
+      }
+    }
+    a = b;
+    for(int i = 0; i < a.length; i++) {
+      for(int j = 0; j < a[i].length; j++) {
+        System.out.print(a[i][j]);
+      }
+      System.out.println();
+    }
   }
   
   public static void main(String[] args) {
-    
+    ex01();
+    ex02();
+    ex03();
+    ex04();
+    ex05();
   }
-
 }
