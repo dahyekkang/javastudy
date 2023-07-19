@@ -1,4 +1,4 @@
-package ex03_class;
+package kr.co.gdu;
 
 /**
  * 
