@@ -21,5 +21,4 @@ public class MainWrapper3 {
     }
     System.out.println(a.length);
   }
-
 }
