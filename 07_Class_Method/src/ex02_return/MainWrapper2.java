@@ -22,5 +22,4 @@ public class MainWrapper2 {
     }
     System.out.println(a);
   }
-  
 }
