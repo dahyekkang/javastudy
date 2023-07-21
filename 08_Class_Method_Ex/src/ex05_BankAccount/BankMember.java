@@ -40,4 +40,21 @@ public class BankMember {
     System.out.println("고객명 : " + name);
     acc.info();
   }
+  
+  // 이체 메소드 호출을 위한 작업
+  // 입금 메소드
+  public void deposit(long money) {
+    acc.deposit(money);
+  }
+  
+  // 출금 메소드
+  public long withdrawal(long money) {
+    return acc.withdrawal(money);
+  }
+  
+  //이체 메소드
+  public void transfer(BankMember member, long money) {
+    member.deposit(withdrawal(money));
+  }
+  
 }

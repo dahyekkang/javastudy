@@ -35,6 +35,30 @@ public class MainWrapper {
     System.out.println("개설지점: " + member1.getAcc().getBank().getName());
     System.out.println("지점연락처: " + member1.getAcc().getBank().getTel());
     
+    Bank bank2 = new Bank();    // 인수가 없는 생성자
+    bank2.setName("카뱅");
+    bank2.setTel("02-333-3333");
+    
+    BankAccount acc2 = new BankAccount();
+    acc2.setBank(bank2);
+    acc2.setAccNo("987-65-43210");
+    acc2.setBalance(10000);
+    
+    BankMember member2 = new BankMember();
+    member2.setName("영숙");
+    member2.setAcc(acc2);
+    
+    System.out.println("고객명: " + member2.getName());
+    System.out.println("계좌번호: " + member2.getAcc().getAccNo());
+    System.out.println("통장잔액: " + member2.getAcc().getBalance());
+    System.out.println("개설지점: " + member2.getAcc().getBank().getName());
+    System.out.println("지점연락처: " + member2.getAcc().getBank().getTel());
+
+    
+    // 이체
+    member1.transfer(member2, 10000);
+    member1.info();
+    member2.info();
   }
   
 }

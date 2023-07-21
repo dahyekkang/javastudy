@@ -44,12 +44,35 @@ public class BankAccount {
     return balance;
   }
   
+  
   // BankAccount 정보 출력
- 
   public void info() {
     System.out.println("계좌번호 : " + accNo + ", " + "통장잔액 : " + balance + "원");
     System.out.print("개설지점 : ");
     bank.info();
+  }
+  
+  // 입금 메소드
+  public void deposit(long money) {
+    if(money <= 0) {
+      return;
+    }
+    balance += money;
+  }
+  
+  // 출금 메소드
+  public long withdrawal(long money) {
+    long retVal = 0;
+    if(money > 0 && money <= balance) {
+      balance -= money;
+      retVal = money;
+      }
+    return retVal;
+  }
+  
+  // 이체 메소드
+  public void transfer(BankAccount acc, long money) {
+    acc.deposit(withdrawal(money));
   }
   
 }
