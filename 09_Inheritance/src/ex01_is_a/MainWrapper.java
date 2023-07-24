@@ -8,10 +8,9 @@ public class MainWrapper {
     Student s = new Student();
     
     // Student 객체 메소드 확인
-    s.eat();
-    s.sleep();
-    s.study();
-    
+    s.eat();    // 슈퍼 클래스(Person)로부터 상속 받은 메소드
+    s.sleep();  // 슈퍼 클래스(Person)로부터 상속 받은 메소드
+    s.study();  // Student
 
   }
 
