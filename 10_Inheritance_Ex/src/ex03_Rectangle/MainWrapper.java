@@ -10,6 +10,9 @@ public class MainWrapper {
     s1.setHeight(5);
     s1.info();
 
+    // 정사각형 만들기
+    Square s2 = new Square(6);    // 너비 6, 높이 6인 정사각형
+    s2.info();
   }
 
 }
