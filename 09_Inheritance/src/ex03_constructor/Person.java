@@ -4,10 +4,10 @@ public class Person {
   
   private String name;
   
-//  // new Person()에서 호출되는 생성자(constructor)
-//  public Person() {
-//    System.out.println("Person() 호출");
-//  }
+  // new Person()에서 호출되는 생성자(constructor)
+  public Person() {
+    System.out.println("Person() 호출");
+  }
   
   // new Person("홍길동")에서 호출되는 생성자(constructor)
   public Person(String name) {
