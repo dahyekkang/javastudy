@@ -65,4 +65,15 @@ public class MainWrapper {
     String name = "tom";
     System.out.println(name);
   }
+  
+  /*
+   * primitive type  →   reference type
+   * 
+   *    boolean      →     Boolean
+   *    char         →     Character
+   *    byte         →     Byte
+   *    int          →     Integer
+   *    long         →     Long
+   *    double       →     Double
+   */
 }

@@ -2,11 +2,13 @@ package ex06_GameUnit;
 
 public class Marine extends GameUnit {
   
+  private String name;
   private final int POWER = 5;
   
   // new Marine("마린")
   public Marine(String name) {
-    super(name);    // public GameUnit(String name){} 생성자를 호출한다.
+    super();    // public GameUnit(String name){} 생성자를 호출한다.
+    this.name = name;
   }
   
   @Override

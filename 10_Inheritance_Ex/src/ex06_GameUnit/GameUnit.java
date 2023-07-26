@@ -7,6 +7,10 @@ public class GameUnit {
   private boolean isAlive;
   
   // new GameUnit("마린")
+  public GameUnit() {
+    
+  }
+  
   public GameUnit(String name) {
     this.name = name;
   }
@@ -34,6 +38,6 @@ public class GameUnit {
   // 호출을 위한 attack 메소드는 실행되지 않는다.
   public void attack(GameUnit other) {
     
-  }
-
+    }
 }
+    
