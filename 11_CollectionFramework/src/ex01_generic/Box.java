@@ -1,6 +1,8 @@
 package ex01_generic;
 
 // 만능 박스를 만드는 것이 목표 !
+// T는 고정은 아니고, 적절한 대문자를 사용하는 것이 일반적
+// 중요한 것은 박스 사용 방법! MainWrapper.
 
 public class Box<T> {
 
