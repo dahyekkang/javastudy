@@ -1,5 +1,8 @@
 package ex08_Bakery;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // 1가지 빵만 파는 빵집
 
 public class Bakery {
@@ -34,7 +37,7 @@ public class Bakery {
    * @param money 빵을 사려고 내는 돈
    * @return 빵과 잔돈
    */
-  public BreadChange sell(int count, int money) {
+  public Map<String, Integer> sell(int count, int money) {
     
     // 빵이 부족하다.
     if(this.count < count) {
@@ -64,18 +67,14 @@ public class Bakery {
     this.count -= count;
     this.money += count * PRICE;
     
-    // 고객에게 반환할 BreadChange 객체 생성
-    BreadChange bc = new BreadChange(count, money - count * PRICE);
+    // 고객에게 반환할 Map 생성
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    map.put("bread", count);
+    map.put("change", money - count * PRICE);
     
     // 고객에게 빵과 잔돈 반환
-    return bc;
+    return map;
   }
-  
-//  public void buy(int count, int money) {
-//    this.count -= count;
-//    this.money = money + count * PRICE;
-//  }
 
-  
   
 }

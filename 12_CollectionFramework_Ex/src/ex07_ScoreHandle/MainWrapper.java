@@ -24,16 +24,14 @@ public class MainWrapper {
     student3.put("score", 95);
     handler.addScore(student3);
     
-    int max = handler.getMax();
-    int min = handler.getMin();
-    int total = handler.getTotal();
-    double average = handler.getAverage();
+    Map<String, Number> map1 = handler.get();
     
-    System.out.println("최댓값 : " + max);
-    System.out.println("최솟값 : " + min);
-    System.out.println("합계 : " + total);
-    System.out.println("평균 : " + average);
+    System.out.println("최댓값 : " + map1.get("max"));
+    System.out.println("최솟값 : " + map1.get("min"));
+    System.out.println("합계 : " + map1.get("total"));
+    System.out.println("평균 : " + map1.get("average"));
     
+
   }
 
 }
