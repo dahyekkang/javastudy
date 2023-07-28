@@ -64,22 +64,7 @@ public class MainWrapper {
     
     // 반복자 Iterator를 이용한 Set 순회
     Iterator<String> arm = flower.iterator();   // 플라워 세트에 집어넣을 수 있는 팔을 하나 만들자.
-    
-//    조건 : arm.hasNext()
-//    실행 : System.out.println(arm.next());
-//    System.out.println(arm.hasNext());
-//    System.out.println(arm.next());
-//    
-//    System.out.println(arm.hasNext());
-//    System.out.println(arm.next());
-//    
-//    System.out.println(arm.hasNext());
-//    System.out.println(arm.next());
-//    
-//    System.out.println(arm.hasNext());
-//    System.out.println(arm.next());
-//
-//    System.out.println(arm.hasNext());
+   
     
     while(arm.hasNext()) {
       System.out.println(arm.next());
