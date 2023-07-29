@@ -42,7 +42,7 @@ public class MainWrapper {
     hobbies.add("베이킹");
     hobbies.add("유튜브");
     hobbies.add("여행");
-    hobbies.add("물고기구경");
+    hobbies.add("코딩");
     
     // for문 활용하기 (인덱스가 없으므로 향상 for문)
     for(String hobby : hobbies) {
