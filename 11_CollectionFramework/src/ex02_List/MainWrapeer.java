@@ -32,36 +32,36 @@ public class MainWrapeer {
   
   public static void ex01() {
     
-//    // ArrayList의 인터페이스 List 타입 선언
-//    List<String> season;
-//    
-//    // ArrayList 생성
-//    season = new ArrayList<String>();
-//    
-//    // 배열 요소 추가하기
-//    season.add("여름");   // 인덱스 0에 여름 추가됨
-//    season.add("가을");
-//    season.add("겨울");
-//    season.add(0, "봄");  // 인덱스 0에 봄이 들어가고 나머지 애들 한 칸씩 미룸
-//    
-//    // 배열 요소 확인하기(get 메소드 사용)
-//    System.out.println(season.get(0)); // 첫번째 요소 가져오기
-//    System.out.println(season.get(1)); // 두번째 요소 가져오기
-//    System.out.println(season.get(2)); // 세번째 요소 가져오기
-//    System.out.println(season.get(3)); // 네번째 요소 가져오기
+    // ArrayList의 인터페이스 List 타입 선언
+    List<String> season;
+    
+    // ArrayList 생성
+    season = new ArrayList<String>();
+    
+    // 배열 요소 추가하기
+    season.add("여름");   // 인덱스 0에 여름 추가됨
+    season.add("가을");
+    season.add("겨울");
+    season.add(0, "봄");  // 인덱스 0에 봄이 들어가고 나머지 애들 한 칸씩 미룸
+    
+    // 배열 요소 확인하기(get 메소드 사용)
+    System.out.println(season.get(0)); // 첫번째 요소 가져오기
+    System.out.println(season.get(1)); // 두번째 요소 가져오기
+    System.out.println(season.get(2)); // 세번째 요소 가져오기
+    System.out.println(season.get(3)); // 네번째 요소 가져오기
     
     
     for(String element : season) {
       System.out.println(element);
     }
-    
-    String[] season = new String[4];
-    season[0] = "여름";
-    season[1] = "가을";
-    season[2] = "겨울";
-    System.arraycopy(season, 0, season, 1, 3);
-    season[0] = "봄";
-    // 이렇게 해야하는데 이거 대신 ArrayList를 쓰면 편함
+//    
+//    String[] season = new String[4];
+//    season[0] = "여름";
+//    season[1] = "가을";
+//    season[2] = "겨울";
+//    System.arraycopy(season, 0, season, 1, 3);
+//    season[0] = "봄";
+//    // 이렇게 해야하는데 이거 대신 ArrayList를 쓰면 편함
     
   }
 
@@ -156,7 +156,7 @@ public class MainWrapeer {
   
   public static void main(String[] args) {
     
-    ex01();
+    ex05();
 
   }
 
