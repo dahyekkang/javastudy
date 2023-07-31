@@ -9,6 +9,34 @@ import java.util.Set;
 public class MainWrapper {
   
   /*
+   *  ┌--------------┐
+   *  │     Map      │ Map 인터페이스
+   *  │--------------│
+   *  │   put();     │
+   *  │   get();     │
+   *  │   replace(); │
+   *  │   size();    │
+   *  │   keySet();  │
+   *  │   entrySet();│
+   *  │   remove();  │
+   *  └--------------┘
+   *          ▲
+   *          │
+   *          │
+   *  ┌------------------------┐
+   *  │        HashMap         │ HashMap 클래스
+   *  │------------------------│
+   *  │   put(Key, Value){}    │ Entry 추가하기
+   *  │   get(Key){}           │ 해당Key의 Value 가져오기
+   *  │   replace(key, value){}│ 해당Key의 Value 수정하기
+   *  │   size(){}             │ Entry 개수 반환하기
+   *  │   keySet(){}           │ Key를 꺼내 Set에 저장하기
+   *  │   entrySet(){}         │ Entry를 Set에 저장하기
+   *  │   remove(Key, Value){} │ Entry 삭제하기
+   *  └------------------------┘
+   */
+  
+  /*
    * HashMap
    * 1. Map 인터페이스를 구현한 클래스이다.
    * 2. 객체(Object)/인스턴스(Instance)를 대신할 수 있는 자료구조이다.
@@ -50,18 +78,24 @@ public class MainWrapper {
     Map<String, Object> person = new HashMap<String, Object>();
     
     // Entry 저장(Key는 변수명으로, Value는 변수값으로 저장)
-    person.put("name", "강다혜");
-    person.put("age", 26);
+    person.put("name", "가길동");
+    person.put("age", 30);
     
     // Entry 수정(기존의 Key를 사용하면 해당 Key의 Value가 수정되는 방식)
-    person.put("name", "모모");
-    person.put("age", 15);
-    
+    person.put("name", "나길동");
+    person.put("age", 28);
+
     // Value 확인
     System.out.println(person.get("name"));
     System.out.println(person.get("age"));
     
+    // Entry 수정(replace 사용)
+    person.replace("name", "다길동");
+    person.replace("age", 25);    
     
+    // Value 확인
+    System.out.println(person.get("name"));
+    System.out.println(person.get("age"));
     
   }
 

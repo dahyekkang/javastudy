@@ -38,10 +38,5 @@ public class Exam {
     return "성적[국어=" + kor + ", 영어=" + eng + ", 수학=" + math + "]";
   }
 
-  
-  
-  
-  
-  
 
 }
