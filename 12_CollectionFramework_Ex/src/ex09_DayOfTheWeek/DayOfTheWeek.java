@@ -47,15 +47,14 @@ public class DayOfTheWeek {
     
     // month를 이용해 totalDay 누적(리스트 lastDay 활용)
     for(int i = 0; i <= month; i++) {
-      totalDay += lastDay.get(i);
+      totalDay += lastDay.get(i - 1);
     }
     
     // day를 이용해 totalDay 누적
     totalDay += day;
     
-    
     // dayOfTheWeek 계산(totalDay + 리스트 week 활용)
-    System.out.println(year + "년 " + month + "월 " + day + "일은 " + totalDay);
+    System.out.println(year + "년 " + month + "월 " + day + "일은 " + week.get(totalDay % 7));
     
   }
   

@@ -209,7 +209,7 @@ public class Ex01_String {
     }
     
     // isBlank 메소드
-    // 1. 빈문자열이거나 공백 문자로 구성되었다면 true 반환, 아니면 false 반환
+    // 1. 빈문자열이거나 공백 문자(white space)로 구성되었다면 true 반환, 아니면 false 반환
     // 2. JDK 11 이후 버전에서 사용 가능
     
     if(name.isBlank()) {
@@ -247,8 +247,39 @@ public class Ex01_String {
   
   public static void ex13() {
     
+    // strip 메소드
+    // 앞 뒤에 포함된 공백 문자 제거
+    String name = "\n tom \n";
+    String str1 = name.strip();
+    System.out.println(str1);
+    System.out.println(str1.length());
+    
+    // trim 메소드
+    // 앞 뒤에 포함된 공백 문자 제거
+    String str2 = name.trim();
+    System.out.println(str2);
+    System.out.println(str2.length());
+    
+  }
+  
+  public static void ex14() {
+    
+    // replace 메소드
+    // 1. 지정된 문자열을 다른 문자열로 변환
+    // 2. 발견된 모든 문자열을 변환
+    
+    String ip = "192.168.0.101";
+    String str = ip.replace(".", "_");
+    System.out.println(str);
+    
+  }
+  
+  public static void ex15() {
+    
     // 정규식 : 만약 네이버에서 회원가입하려고 할 때, 아이디 지정 시 내가 원하는 패턴이 포함되어있는지 확인하는 식
     // (5~20자의 영문 소문자, 숫자와 특수기호(_, -)만 사용 가능)
+    
+    // 이 곳의 메소드는 정규식을 배운 다음에 사용합시다.
     
     // 정규식을 활용한 메소드
     // 1. startsWith : 지정된 정규식 패턴으로 시작하면 true 반환
@@ -259,14 +290,14 @@ public class Ex01_String {
     
     String ip = "192.168.0.101";
     
-    String str = ip.replaceAll("[.]", "_");
+    String str = ip.replaceAll("[.]", "_");   // 192_168_0_101을 기대하지만 정규식 패턴에서 .(마침표)은 모든 문자를 의미하므로 원하는 결과를 얻을 수 없다.
     System.out.println(str);
     
   }
   
   public static void main(String[] args) {
     
-    ex13();
+    ex14();
 
   }
 
