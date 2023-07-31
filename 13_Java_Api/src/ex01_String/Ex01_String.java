@@ -84,9 +84,189 @@ public class Ex01_String {
     
   }
 
+  public static void ex04() {
+    
+    // toUpperCase 메소드 : 모두 대문자로 변환
+    // toLowerCase 메소드 : 모두 소문자로 변환
+    
+    String name = "Tom";
+    
+    System.out.println(name.toUpperCase());
+    System.out.println(name.toLowerCase());
+    
+  }
+  
+  public static void ex05() {
+    
+    // length 메소드 : 문자열의 길이(글자수)를 반환
+    
+    String name = "Tom cruise\n";
+    int length = name.length();
+    System.out.println(length);
+    
+  }
+  
+  public static void ex06() {
+    
+    // charAt 메소드
+    // 문자열의 특정 인덱스(Index)의 문자를 반환
+    
+    String name = "tom";
+    
+    char ch1 = name.charAt(0);
+    char ch2 = name.charAt(1);
+    char ch3 = name.charAt(2);
+    
+    System.out.println(ch1 + ", " + ch2 + ", " + ch3);
+    
+  }
+  
+  public static void ex07() {
+    
+    // substring 메소드
+    // 문자열의 일부 문자열을 반환
+    
+    // substring 사용법
+    // 1. substring(int begin) : 인덱스 begin부터 끝까지 반환
+    // 2. substring(int begin, int end) : 인덱스 begin부터 인덱스 end 이전까지 반환(begin <= 추출범위 < end) ★
+    
+    String name = "tom cruise";
+    
+    String firstName = name.substring(0, 3);    // tom
+    String lastName = name.substring(4);        // cruise
+    
+    System.out.println(firstName);
+    System.out.println(lastName);
+    
+  }
+  
+  public static void ex08() {
+    
+    // indexOf 메소드
+    // 1. 특정 문자열의 인덱스를 반환
+    // 2. 특정 문자열이 2개 이상 존재하는 경우 발견된 첫 번째 문자열의 인덱스를 반환
+    // 3. 발견되지 않으면 -1을 반환
+    
+    // indexOf 사용법
+    // 1. indexOf(String str) : 인덱스 0부터 String str을 검색
+    // 2. indexOf(String str, int index) : 인덱스 index부터 String str을 검색
+    
+    String statement = "걱정한다고 걱정이 없어지면 걱정이 없겠네";
+    
+    int idx1 = statement.indexOf("걱정");
+    int idx2 = statement.indexOf("걱정", idx1 + 1);
+    int idx3 = statement.indexOf("걱정", idx2 + 1);
+    int idx4 = statement.indexOf("tom");
+    
+    
+    System.out.println(idx1);
+    System.out.println(idx2);
+    System.out.println(idx3);
+    System.out.println(idx4);
+    
+  }
+  
+  public static void ex09() {
+    
+    // lastIndexOf 메소드
+    // 1. 발견된 마지막 문자열의 인덱스를 반환
+    // 2. 나머지 특징은 indexOf와 동일함
+    
+    String statement = "걱정한다고 걱정이 없어지면 걱정이 없겠네";
+    
+    int idx = statement.lastIndexOf("걱정");
+    System.out.println(idx);
+    
+  }
+  
+  public static void ex10() {
+    
+    // contains 메소드
+    // 지정된 CharSequence(String, char[] 등)가 포함되어 있으면 true 반환, 아니면 false
+    
+    String email = "admin@naver.com";
+    
+    // @가 포함되어 있는가?
+    if(email.contains("@")){
+      System.out.println("@가 포함되어 있다.");
+    } else {
+      System.out.println("@가 포함되어 있지 않다.");
+    }
+    
+  }
+  
+  public static void ex11() {
+    
+    // isEmpty 메소드
+    // 1. 빈 문자열이면 true 반환, 아니면 false 반환
+    // 2. 빈 문자열 : ""처럼 문자열의 길이가 0인 문자열
+    
+    String name = " ";
+    if(name.isEmpty()) {
+      System.out.println("이름이 없다.");
+    } else {
+      System.out.println("이름이 있다.");
+    }
+    
+    // isBlank 메소드
+    // 1. 빈문자열이거나 공백 문자로 구성되었다면 true 반환, 아니면 false 반환
+    // 2. JDK 11 이후 버전에서 사용 가능
+    
+    if(name.isBlank()) {
+      System.out.println("이름이 없다.");
+    } else {
+      System.out.println("이름이 있다.");
+    }
+  }
+  
+  public static void ex12() {
+    
+    // format 메소드
+    // 1. 문자열을 지정한 형식으로 반환
+    // 2. 클래스 메소드이므로 String 클래스를 이용해서 호출함
+    
+    // 숫자 형식
+    int number = 100;   // 10진수 100
+    System.out.println(String.format("%o", number));      // %o : 8진수로 표시
+    System.out.println(String.format("%d", number));      // %d : 10진수로 표시
+    System.out.println(String.format("%x", number));      // %x : 16진수로 표시(0~9, a~f)
+    System.out.println(String.format("%X", number));      // %X : 16진수로 표시(0~9, A~F)
+    
+    // 문자열 형식
+    String str = "hello";
+    System.out.println(String.format("%s", str));   // %s : 문자열로 표시
+    
+    // 출력 폭 조정
+    System.out.println(String.format("%5d", number));  // 5자리 10진수로 표시, 숫자를 오른쪽 정렬 처리
+    System.out.println(String.format("%-5d", number)); // 5자리 10진수로 표시, 숫자를 왼쪽 정렬 처리
+    System.out.println(String.format("%05d", number));  // 5자리 10진수로 표시, 숫자를 오른쪽 정렬 처리, 빈 자리를 0으로 채움
+    
+    System.out.println(String.format("%10s", str));   // 10자리 문자열 표시, 문자열을 오른쪽 정렬 처리
+    System.out.println(String.format("%-10s", str));  // 10자리 문자열 표시, 문자열을 왼쪽 정렬 처리
+  }
+  
+  public static void ex13() {
+    
+    // 정규식 : 만약 네이버에서 회원가입하려고 할 때, 아이디 지정 시 내가 원하는 패턴이 포함되어있는지 확인하는 식
+    // (5~20자의 영문 소문자, 숫자와 특수기호(_, -)만 사용 가능)
+    
+    // 정규식을 활용한 메소드
+    // 1. startsWith : 지정된 정규식 패턴으로 시작하면 true 반환
+    // 2. endsWith   : 지정된 정규식 패턴으로 끝나면 true 반환
+    // 3. matches    : 지정된 정규식 패턴을 포함하면 true 반환
+    // 4. replaceAll : 지정된 정규식 패턴을 만족하는 부분을 다른 문자열로 변환
+    // 5. split      : 지정된 정규식 패턴으로 문자열을 분리하여 분리된 String 배열을 반환
+    
+    String ip = "192.168.0.101";
+    
+    String str = ip.replaceAll("[.]", "_");
+    System.out.println(str);
+    
+  }
+  
   public static void main(String[] args) {
     
-    ex03();
+    ex13();
 
   }
 
