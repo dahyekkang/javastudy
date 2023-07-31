@@ -29,7 +29,6 @@ public class Ex01_String {
     // name1과 name2의 참조값이 동일하다.
     boolean isEqual = name1 == name2;
     System.out.println(isEqual);
-    System.out.println(name1.equals(name2));
   }
   
   public static void ex02() {
@@ -60,7 +59,6 @@ public class Ex01_String {
     // name1과 name2의 참조값이 다르다.
     boolean isEqual = name1 == name2;
     System.out.println(isEqual);
-    System.out.println(name1.equals(name2));
     
   }
   
@@ -81,6 +79,7 @@ public class Ex01_String {
     
     boolean isEqual3 = name1.equalsIgnoreCase(name3);   // case를 무시한다. 대소문자 구분없이 비교한다. 대소문자를 무시하고 문자열을 비교한다.
     System.out.println(isEqual3);
+    
     
   }
 
@@ -297,7 +296,7 @@ public class Ex01_String {
   
   public static void main(String[] args) {
     
-    ex14();
+    ex10();
 
   }
 

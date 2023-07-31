@@ -39,29 +39,38 @@ public class DayOfTheWeek {
     this.month = month;
     this.day = day;
     
+    
     // dayOfTheWeek 계산 코드 작성
     int totalDay = 0;  // AD 1년 1월 1일 이후로 며칠이 지났는지 저장한 변수
     
     // year를 이용해 totalDay 누적
-    totalDay += year * 365;
+    for(int y = 1; y < year; y++) {
+      totalDay += 365;
+      if((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) {
+        totalDay++;
+      }
+    }
     
     // month를 이용해 totalDay 누적(리스트 lastDay 활용)
-    for(int i = 0; i <= month; i++) {
-      totalDay += lastDay.get(i - 1);
+    if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+      lastDay.set(2,  29);
+    }
+    for(int i = 1; i < month; i++) {
+      totalDay += lastDay.get(i);
     }
     
     // day를 이용해 totalDay 누적
     totalDay += day;
     
     // dayOfTheWeek 계산(totalDay + 리스트 week 활용)
-    System.out.println(year + "년 " + month + "월 " + day + "일은 " + week.get(totalDay % 7));
+    dayOfTheWeek = week.get(totalDay % 7);
     
   }
   
   // toString()
   @Override
   public String toString() {
-    return super.toString();
+    return year + "년 " + String.format("%02d", month) + "월 " + String.format("%02d", day) + "일은 " + dayOfTheWeek + "요일입니다.";
   }
   
 }
