@@ -23,7 +23,7 @@ public class MainWrapper {
       if(str.equals("exit")) {
         System.out.println(cnt + "번만에 " + str + "가 입력되었다.");
         sc.close();
-      } 
+      }
     }
     
   }
@@ -47,11 +47,13 @@ public class MainWrapper {
       str = sc.next();
       if(str.equals("서울") || str.equalsIgnoreCase("seoul")) {
         System.out.println("정답입니다.");
-        sc.close();
+        break;
       } else {
         System.out.println("오답입니다.");
+        continue;
       }
     }
+    sc.close();
   }
   
   // 문제3. 평점 입력 받아서 해당 평점만큼 ★을 출력하시오.
@@ -78,9 +80,10 @@ public class MainWrapper {
           star += "☆";
         }
         System.out.println(star);
-        sc.close();
+        break;
         }
       }
+      sc.close();
     }
   
   // 문제4. 비밀번호는 "1234"이다.
@@ -99,22 +102,23 @@ public class MainWrapper {
   // 성공
   public static void ex04() {
     
-    int passWord = 1234;
-    int pw = 0;
+    String passWord = "1234";
+    String pw = "";
     int cnt = 0;
     Scanner sc = new Scanner(System.in);
-    while(pw != 1234) {
+    while(pw.equals("1234") == false) {
       cnt++;
       System.out.print("비밀번호? >>> ");
-      pw = sc.nextInt();
+      pw = sc.next();
       if(cnt == 5) {
         System.out.println("실패");
         break;
-      } else if(pw == passWord) {
+      } else if(pw.equals(passWord)) {
         System.out.println("성공");
-        sc.close();
+        break;
       }
     } 
+    sc.close();
   }
   
   // 문제5. 4계절이 저장되어 있는 영한 사전(2차원 배열)을 이용하여 문제를 해결하시오. 순서대로 한 번씩만 물어보는 방식으로 처리하시오.
@@ -129,24 +133,27 @@ public class MainWrapper {
   // 오답
   public static void ex05() {
     
+    String str = "";
     String [][] season = {{"봄", "spring"}, {"여름", "summer"}, {"가을", "fall"}, {"겨울", "winter"}};
     Scanner sc = new Scanner(System.in);
     for(int i = 0; i < season.length; i++) {
-      for(int j = 0; j < season[i].length; j++) {
-        
+      System.out.print(String.format("%s", season[i]) + "을 영어로 하면?? >>> ");
+      str = sc.next();
+      if(str.equals(season[i][1])) {
+        System.out.println("정답");
+      } else {
+        System.out.println("오답");
       }
     }
-    
-    
-    
+    sc.close();
   }
   
   public static void main(String[] args) {
 //    ex01();
-//    ex02();
+    ex02();
 //    ex03();
 //    ex04();
-    ex05();
+//    ex05();
   }
 
 }
