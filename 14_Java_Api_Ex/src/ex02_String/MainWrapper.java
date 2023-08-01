@@ -1,5 +1,7 @@
 package ex02_String;
 
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class MainWrapper {
@@ -14,7 +16,7 @@ public class MainWrapper {
     String param = "";
     
     requestURI = url.substring(0, url.indexOf("?"));
-    param = url.substring(url.indexOf("?")+1, url.length());
+    param = url.substring(url.indexOf("?") + 1);
     System.out.println("String requestURI = " + requestURI);
     System.out.println("String param = " + param);
   }
@@ -29,7 +31,7 @@ public class MainWrapper {
     String extName = "";
     
     fileName = fullName.substring(0, fullName.indexOf("."));
-    extName = fullName.substring(fullName.indexOf(".") + 1, fullName.length());
+    extName = fullName.substring(fullName.indexOf(".") + 1);
     
     System.out.println("String fileName = " + fileName);
     System.out.println("String extNmae = " + extName);
@@ -53,9 +55,9 @@ public class MainWrapper {
     if(beforeName.contains(" ")) {
       return;
     }
-    afterName = beforeName.substring(0, beforeName.indexOf(".")) + "_" + timestamp + beforeName.substring(beforeName.indexOf("."), beforeName.length());
+    afterName = beforeName.substring(0, beforeName.indexOf(".")) + "_" + timestamp + beforeName.substring(beforeName.indexOf("."));
 
-    System.out.print("변환 후 파일명 = " + afterName);
+    System.out.println("변환 후 파일명 = " + afterName);
     
   }
   
@@ -67,6 +69,23 @@ public class MainWrapper {
   public static void ex04() {
     String personalId = "141212-3345678";
     
+    Calendar calendar = Calendar.getInstance();
+    
+    int year = calendar.get(Calendar.YEAR);
+    
+    int birth = Integer.parseInt("20" + personalId.substring(0, 2));
+    
+    String s = personalId.substring(personalId.indexOf("-") + 1, personalId.indexOf("-") + 2);
+    if(s.equals("1") || s.equals("3")) {
+      s = "남자";
+    } else if(s.equals("2") || s.equals("4")) {
+      s = "여자";
+    } else {
+      System.out.println("잘못된 성별");
+    }
+    
+    System.out.println(year - birth + "살 " + s + "입니다.");
+    
   }
   
   // 문제5. 사용자로부터 입력 받은 문자열을 거꾸로 읽어도 원래 문자열과 동일한지 여부를 파악하는 프로그램을 구현하시오.
@@ -77,15 +96,30 @@ public class MainWrapper {
   //   문자열 입력 >>> 역삼역
   //   역삼역 : 거꾸로 읽어도 역삼역입니다.
   public static void ex05() {
+
+    Scanner sc = new Scanner(System.in);
+    System.out.print("문자열 입력 >>> ");
+    String str = sc.next();
+    String rev = "";
+    
+    for(int i = str.length(); i > 0; i--) {
+      rev += str.charAt(i-1);
+    }
+    
+    if(str.equals(rev) == true) {
+      System.out.println(str + " : 거꾸로 읽어도 " + rev + "입니다.");
+    } else {
+      System.out.println(str + " : 거꾸로 읽으면 " + str + "과 다릅니다.");
+    }
     
   }
   
   public static void main(String[] args) {
-    ex01();
-    ex02();
-    ex03();
-    ex04();
-    ex05();
+    //ex01();
+    //ex02();
+    //ex03();
+    //ex04();
+    //ex05();
   }
 
 }
