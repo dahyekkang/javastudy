@@ -1,5 +1,6 @@
 package ex03_random;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -34,14 +35,16 @@ public class MainWrapper {
   // 출금 전 1원, 6회 출금액 1원, 출금 후 0원
   public static void ex02() {
     int balance = 5000;  // 통장
-    int nb;
+    int minus;
     int cnt = 0;
     Random random = new Random();
-    while(balance != 0) {
+    while(balance > 0) {
+      System.out.print("출금 전 " + balance + "원, ");
       cnt++;
-      
+      minus = random.nextInt(balance) + 1;
+      balance -= minus;
+      System.out.println(cnt + "회 출금액 " + minus + "원, 출금 후 " + balance + "원");
     }
-    System.out.println("출금 전 " + balance + "원, " + cnt + "회 출금액 " + random.nextInt(balance)+1 + "원, 출금 후 ", balance);
   }
   
   // 문제3. 인증코드 6자리 만들기.
@@ -49,7 +52,14 @@ public class MainWrapper {
   // 실행예시)
   // 인증코드: [966419]
   public static void ex03() {
-    
+    SecureRandom secureRandom = new SecureRandom();   
+    int[] code = new int[6];
+    System.out.print("인증코드: [");
+    for(int i = 0; i < code.length; i++) {
+      code[i] = secureRandom.nextInt(9) + 1;
+      System.out.print(code[i]);
+    }
+    System.out.print("]");
   }
   
   // 문제4. 구구단을 외자.
@@ -62,6 +72,8 @@ public class MainWrapper {
   //   8x7? >>> 49
   //   땡
   public static void ex04() {
+    
+    int dan = (int)(Math.random()*8+1)
     
   }
   
