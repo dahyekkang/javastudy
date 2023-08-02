@@ -101,10 +101,14 @@ public class MainWrapper {
   public static void ex05() {
     String[] yut = {"", "도", "개", "걸", "윷", "모"};
     Random random = new Random();
-//    for(int i = 0; i < cnt; i ++) {
-//      
-//      System.out.print(yut[random.nextInt(5) + 1]);
-//    }
+    int rn = 0;
+    int move = 0;
+    do {
+      rn = random.nextInt(yut.length) + 1;
+      move += rn;
+      System.out.print("\"" + yut[rn] + "\"" + ", ");
+    } while(rn == 4 || rn == 5);
+    System.out.println(move + "칸 이동한다.");
   }
   
   // 문제6. 가위바위보.
@@ -115,6 +119,29 @@ public class MainWrapper {
   // 당신은 가위, 컴퓨터는 보, 당신은 이겼습니다.
   public static void ex06() {
     String[] rsp = {"가위", "바위", "보"};
+    Random random = new Random();
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.print("가위바위보 >>> ");
+    String strrsp = sc.next();
+    String comrsp = rsp[random.nextInt(rsp.length)];
+    
+    String res = "";
+    for(int i = 0; i < rsp.length; i++) {
+      boolean you = rsp[i].equals(strrsp);
+      boolean coml = rsp[(i+2)%3].equals(comrsp);
+      boolean comw = rsp[(i+1)%3].equals(comrsp);
+      boolean comb = rsp[i].equals(comrsp);
+        if(you && coml) {
+          res = "이겼습니다.";
+        } else if(you && comw) {
+          res = "졌습니다.";
+        } else if(you && comb) {
+          res = "비겼습니다.";
+          }
+        }
+    System.out.println("당신은 " + strrsp + ", 컴퓨터는 " + comrsp + ", 당신은 " + res);
+    
     
   }
   
@@ -129,6 +156,34 @@ public class MainWrapper {
   //   생성된 6자리 인증번호는 Fa013b입니다.
   public static void ex07() {
     
+    SecureRandom secureRandom = new SecureRandom();
+    Scanner sc = new Scanner(System.in);
+    
+    // 숫자   : 0  - 9
+    // 대문자 : 65 - 90
+    // 소문자 : 97 - 122
+    
+    System.out.print("몇 자리의 인증번호를 생성할까요? >>> ");
+    int number = sc.nextInt();    // 인증번호 자릿수 받기
+    
+    String fullNumber = "";   // 인증번호 빈 문자열 초기화
+    String plusStr = "";
+    
+    for(int i = 0; i < number; i++) {
+      double p = secureRandom.nextDouble();
+      if(p <= 0.33) {
+        int randomNumber = secureRandom.nextInt(10);
+        plusStr = String.format("%s", randomNumber);
+      } else if(p <= 0.66) {
+        char randomUpper = (char)(secureRandom.nextInt(26) + 65);
+        plusStr = String.format("%s", randomUpper);
+      } else {
+        char randomLower = (char)(secureRandom.nextInt(26) + 97);
+        plusStr = String.format("%s", randomLower);
+      }
+      fullNumber += plusStr;
+    }
+    System.out.println("생성된 " + number + "자리 인증번호는 " + fullNumber + "입니다.");
   }
   
   // 문제8. UpDown 게임
@@ -144,6 +199,24 @@ public class MainWrapper {
   // 정답. 총 5번만에 성공.
   public static void ex08() {
     
+    Random random = new Random();
+    Scanner sc = new Scanner(System.in);
+    int ranNum = random.nextInt(10000) + 1;
+    int cnt = 0;
+    
+    while(true) {
+      cnt++;
+      System.out.print("입력 >>> ");
+      int ans = sc.nextInt();
+      if(ans > ranNum) {
+        System.out.println("Down!");
+      } else if(ans < ranNum) {
+        System.out.println("Up!");
+      } else {
+        System.out.println("정답!!!!!!! 총 " + cnt + "번만에 성공!!!!!!");
+        return;
+      }
+    } 
   }
   
   // 문제9. 0~9 사이 난수를 100개 생성하시오.
@@ -163,6 +236,24 @@ public class MainWrapper {
     int[] number = new int[100];  // 100개 난수
     int[] count = new int[10];    // 각 숫자가 발생한 횟수
     
+    Random random = new Random();
+    
+    for(int i = 0; i < number.length; i++) {
+      number[i] = random.nextInt(10);
+      for(int j = 0; j < count.length; j++) {
+        if(number[i] == j) {
+          count[j]++;
+        }
+      }
+    }
+
+    for(int i = 0; i < count.length; i++) {
+      System.out.print(i + " : ");
+      for(int j = 0; j < count[i]; j++) {
+        System.out.print("#");
+      }
+      System.out.println(" " + count[i]);
+    }
   }
   
   // 문제10. 다음 순서에 따라서 5 x 5 형태의 숫자 빙고판을 자동으로 생성하시오.
@@ -187,21 +278,43 @@ public class MainWrapper {
   //   8 17  5 12  7
   //  16 22 18 24 23
   public static void ex10() {
+    Random random = new Random();
     final int SIZE = 5;
     int[][] bingo = new int[SIZE][SIZE];
     
+    
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        bingo[i][j] = 5 * i + j + 1;
+      }
+    }
+    
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        int ni = random.nextInt(5);
+        int nj = random.nextInt(5);
+        bingo[i][j] = bingo[ni][nj];
+        System.out.print(String.format("%3s", bingo[i][j]));
+      }
+      
+      System.out.println();
+    }
+    
   }
+  
+  
+  
   
   public static void main(String[] args) {
     //ex01();
     //ex02();
     //ex03();
     //ex04();
-    ex05();
-    ex06();
-    ex07();
-    ex08();
-    ex09();
+    //ex05();
+    //ex06();
+    //ex07();
+    //ex08();
+    //ex09();
     ex10();
   }
 

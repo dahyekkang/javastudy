@@ -77,6 +77,15 @@ public class MainWrapper {
   public static void ex03() {
     
     // 파일, 디렉터리 정보 확인
+    // listFiles()    : 모든 File 객체를 저장한 File[] 반환
+    // getName()      : File 이름 반환
+    // getParent()    : 저장된 디렉터리 반환
+    // getPath()      : getParent() + getName() 디렉터리와 이름 합쳐서 반환
+    // lastModified() : 최종수정일을 long 타입으로 반환 - SimpleDateFormat 도움 추천
+    // length()       : 크기를 long 타입의 바이트 단위로 반환
+    // isDirectory()  : 디렉터리이면 true 반환
+    // isFile()       : 파일이면 true 반환
+    
     
     // 디렉터리를 File 객체로 생성
     File dir = new File("C:/Program Files/Java/jdk-11");
