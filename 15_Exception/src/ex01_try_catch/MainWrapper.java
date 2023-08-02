@@ -36,8 +36,8 @@ public class MainWrapper {
       System.out.println("덧셈식을 입력하세요(예 : 1+2)");
       String expr = sc.next();
       String[] numbers = expr.split("[+]");   // numbers = {"1", "2"}
-      int number1 = Integer.parseInt(numbers[0]);
-      int number2 = Integer.parseInt(numbers[1]);
+      int number1 = Integer.parseInt(numbers[0]);   // parseInt : 예외를 던지는 메소드
+      int number2 = Integer.parseInt(numbers[1]);   // public static int parseInt(String s) throws NumberFormatException
       System.out.println(number1 + number2);
       sc.close();
     } catch(NumberFormatException e) {

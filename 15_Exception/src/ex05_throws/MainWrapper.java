@@ -12,13 +12,13 @@ public class MainWrapper {
   // print 메소드 정의
   // throws NullPointerException : 메소드를 호출할 때 NullPointerException 처리가 필요하다.
   public static void print(String str) throws NullPointerException {
-    System.out.println("첫 글자 : " + str.substring(0, 1));
+    System.out.println("첫 글자 : " + str.substring(0, 1));          // 메소드 내부에 try-catch문이 없다.
     System.out.println("나머지 글자 : " + str.substring(1));
   }
 
   public static void main(String[] args) {
     
-    try {
+    try {                         // 호출하는 곳에서 try-catch를 처리
       // print 메소드 호출
       print("홍길동");   // 호출 성공
       print(null);       // NullPointerException 발생

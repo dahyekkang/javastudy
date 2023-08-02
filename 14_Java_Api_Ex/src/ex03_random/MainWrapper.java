@@ -3,6 +3,7 @@ package ex03_random;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MainWrapper {
 
@@ -73,7 +74,16 @@ public class MainWrapper {
   //   땡
   public static void ex04() {
     
-    int dan = (int)(Math.random()*8+1)
+    Scanner sc = new Scanner(System.in);
+    int dan = (int)(Math.random()*8+2);
+    int n = (int)(Math.random()*9+1);
+    System.out.print(dan + "x" + n + " >>> ");
+    int ans = sc.nextInt();
+    if(ans == dan * n) {
+      System.out.println("정답");
+    } else {
+      System.out.println("땡");
+    }
     
   }
   
@@ -90,7 +100,11 @@ public class MainWrapper {
   //   "모", "윷", "도", 10칸 이동한다.
   public static void ex05() {
     String[] yut = {"", "도", "개", "걸", "윷", "모"};
-    
+    Random random = new Random();
+//    for(int i = 0; i < cnt; i ++) {
+//      
+//      System.out.print(yut[random.nextInt(5) + 1]);
+//    }
   }
   
   // 문제6. 가위바위보.
@@ -179,10 +193,10 @@ public class MainWrapper {
   }
   
   public static void main(String[] args) {
-    ex01();
-    ex02();
-    ex03();
-    ex04();
+    //ex01();
+    //ex02();
+    //ex03();
+    //ex04();
     ex05();
     ex06();
     ex07();
