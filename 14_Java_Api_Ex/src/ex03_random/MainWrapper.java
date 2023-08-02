@@ -282,7 +282,6 @@ public class MainWrapper {
     final int SIZE = 5;
     int[][] bingo = new int[SIZE][SIZE];
     
-    
     for(int i = 0; i < SIZE; i++) {
       for(int j = 0; j < SIZE; j++) {
         bingo[i][j] = 5 * i + j + 1;
@@ -291,12 +290,19 @@ public class MainWrapper {
     
     for(int i = 0; i < SIZE; i++) {
       for(int j = 0; j < SIZE; j++) {
-        int ni = random.nextInt(5);
-        int nj = random.nextInt(5);
+        int ni = random.nextInt(SIZE);
+        int nj = random.nextInt(SIZE);
+        int temp;
+        temp = bingo[i][j];
         bingo[i][j] = bingo[ni][nj];
-        System.out.print(String.format("%3s", bingo[i][j]));
+        bingo[ni][nj] = temp;
       }
-      
+    }
+    
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        System.out.print(String.format("%4d", bingo[i][j]));
+      }
       System.out.println();
     }
     
@@ -315,7 +321,7 @@ public class MainWrapper {
     //ex07();
     //ex08();
     //ex09();
-    ex10();
+    //ex10();
   }
 
 }
