@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
-import java.security.spec.DSAGenParameterSpec;
 
 public class MainWrapper {
   
@@ -43,12 +42,6 @@ public class MainWrapper {
       // 출력할 데이터(파일로 보낼 데이터)
       int c = 'A';            // int
       String s = "pple";
-      // 스트링을 바이트배열로 바꿔주는 메소드가 3개 존재한다. getBytes.
-      // 3가지 방식이 있는데 파라미터 없는 건 인코딩할 필요가 없는 것
-      // 2, 3은 charset을 전달하게 되어있으므로 인코딩이 필요한 것
-      // 인코딩이라는 말을 들으면 떠오르는 거 있어? UTF-8! 우리가 사용하고 있는 문자 CHARACTER SET임
-      // 지정할 필요가 있으면 파라미터가 있는 생성자를 사용해라!
-      // UTF-8쓰는 이유가 한글때문인데 pple은 영어이므로! 파라미터 없는 생성자 사용!
       byte[] b = s.getBytes();    // byte[] : String을 byte[]로 변환
       // 출력(파일로 데이터 보내기)
       fout.write(c);
@@ -116,58 +109,10 @@ public class MainWrapper {
     
   }
   
-  
-  
   public static void ex03() {
     
-    // 파일아웃풋스트림 그대로 써서 2줄로 안녕하세요 반갑습니다 출력
-    
-    File dir = new File("C:/storage");
-    if(!dir.exists()) {
-      dir.mkdirs();
-    }
-    File file = new File(dir, "ex03.dat");
-    
-    // 파일출력스트림 선언
-    FileOutputStream fout = null;
-    
-    try {
-      
-      // 파일출력스트림 생성 (반드시 예외 처리가 필요한 코드)
-      fout = new FileOutputStream(file);
-      
-      // 출력할 데이터(파일로 보낼 데이터)
-      String s1 = "안녕하세요";
-      String s2 = "반갑습니다";
-      int c = '\n';
-      
-      // 변환과 출력 한 번에 하기
-      fout.write(s1.getBytes("UTF-8"));
-      fout.write(c);
-      fout.write(s2.getBytes(StandardCharsets.UTF_8));    // getBytes("UTF-8")과 동일하다.
-      
-    } catch(IOException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if(fout != null) {
-          fout.close();
-        }
-      } catch(IOException e) {
-        e.printStackTrace();
-      }
-    }
-    
-    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
-    
-    
-  }
-  
-  
-  public static void ex03_1() {
-    
     /*
-     * java.io.BuffedOutputStream 클래스
+     * java.io.BufferedOutputStream 클래스
      * 1. 내부 버퍼를 가지고 있는 출력스트림이다.
      * 2. 많은 데이터를 한 번에 출력하기 때문에 속도 향상을 위해서 사용한다.
      * 3. 보조스트림이므로 메인스트림과 함께 사용한다.
@@ -216,7 +161,6 @@ public class MainWrapper {
     
     System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
     
-    
   }
   
   public static void ex04() {
@@ -248,7 +192,7 @@ public class MainWrapper {
       String school = "가산대학교";
       
       // 변환과 출력 한 번에 하기 (변환하여 파일로 데이터 보내기)
-      dout.writeChars(name);  // 영어여서 byte로 해도 된다.
+      dout.writeChars(name);  // 영어여서 byte로 해도 된다.    // dout.writeChar('t'), dout.writeChar('o'), dout.writeChar('m')
       dout.writeInt(age);    // 이거 써야함 선택불가
       dout.writeDouble(height);   // 이거 써야함 선택불가
       dout.writeUTF(school);    // 한글 처리.
@@ -326,8 +270,7 @@ public class MainWrapper {
   
   public static void main(String[] args) {
     
-    ex05();
-
+    ex03();
     
   }
 
