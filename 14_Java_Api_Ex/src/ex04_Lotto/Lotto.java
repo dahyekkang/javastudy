@@ -1,5 +1,9 @@
 package ex04_Lotto;
 
+import java.util.Scanner;
+
+import javax.management.RuntimeErrorException;
+
 public class Lotto {
   
   /**
@@ -10,6 +14,13 @@ public class Lotto {
    * @return 0 로또 구매 실패 시 반환
    */
   public int buyLotto() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Lotto를 얼마나 구입하시겠습니까?(최대 10만원) >>> ");
+    int money = sc.nextInt();
+    if(money <= 0) {
+      System.out.println(money + "원 Lotto 구매는 불가능합니다.");
+      return;
+    }
     return 0;
   }
   

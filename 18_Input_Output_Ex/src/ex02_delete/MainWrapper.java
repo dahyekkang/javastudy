@@ -16,6 +16,16 @@ public class MainWrapper {
 
   }
   
+  public static void ex01_1(File dir) {     // * DANGEROUS * 삭제는 위험하다 - ! ! ! ! !
+    File parent = dir.getParentFile();
+    if(parent == null) {
+      return;
+    }
+    System.out.println(dir.getPath() + " 디렉터리 삭제");
+    dir.delete();
+    ex01_1(parent);
+  }
+  
   public static void ex02() {
     
     // C:/storage 디렉터리를 삭제하시오.
@@ -36,7 +46,8 @@ public class MainWrapper {
   
   public static void main(String[] args) {
     
-    ex02();
+    //ex01_1(new File("D:/2023/08/03/16"));
+    //ex02();
     
   }
   

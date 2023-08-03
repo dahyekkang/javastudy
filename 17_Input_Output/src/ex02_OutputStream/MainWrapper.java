@@ -37,6 +37,10 @@ public class MainWrapper {
     try {
       
       // 파일출력스트림 생성 (반드시 예외 처리가 필요한 코드)
+      // 출력스트림모드
+      // 1. 생성모드 : 언제나 새로 만든다.(덮어쓰기)           new FileOutputStream(file)
+      // 2. 추가모드 : 새로 만들거나, 기존 파일에 추가한다.    new FileOutputStream(file, true)
+        
       fout = new FileOutputStream(file);
       
       // 출력할 데이터(파일로 보낼 데이터)
@@ -47,6 +51,8 @@ public class MainWrapper {
       fout.write(c);
       fout.write(b);
       
+      System.out.println(file.getPath() + " 파일 크기 : " + file.length() + "바이트");
+
     } catch(IOException e) {
       e.printStackTrace();
     } finally {
@@ -59,7 +65,6 @@ public class MainWrapper {
       }
     }
     
-    System.out.println(file.getPath() + " 파일 크기 : " + file.length() + "바이트");
     // getPath: parent랑 filename 다 가져온다 파일 크지 않기 때문에 KB로 바꿀 필요 없다.
     
     // 자바가 파일을 만들어줄거고, 파일 안에 Apple이 들어갈 것이다. 텍스트의 크기를 확인할 수 있는 코드도 넣었다.
@@ -93,6 +98,8 @@ public class MainWrapper {
       // 출력(파일로 데이터 보내기)
       fout.write(b);
       
+      System.out.println(file.getPath() + " 파일 크기 : " + file.length() + "바이트");
+
     } catch(IOException e) {
       e.printStackTrace();
     } finally {
@@ -104,9 +111,6 @@ public class MainWrapper {
         e.printStackTrace();
       }
     }
-    
-    System.out.println(file.getPath() + " 파일 크기 : " + file.length() + "바이트");
-    
   }
   
   public static void ex03() {
@@ -147,6 +151,8 @@ public class MainWrapper {
       bout.write(c);
       bout.write(s2.getBytes(StandardCharsets.UTF_8));    // getBytes("UTF-8")과 동일하다.
       
+      System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+
     } catch(IOException e) {
       e.printStackTrace();
     } finally {
@@ -158,9 +164,6 @@ public class MainWrapper {
         e.printStackTrace();
       }
     }
-    
-    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
-    
   }
   
   public static void ex04() {
@@ -197,7 +200,10 @@ public class MainWrapper {
       dout.writeDouble(height);   // 이거 써야함 선택불가
       dout.writeUTF(school);    // 한글 처리.
       
-    } catch(IOException e) {
+      System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+      // 변수값 그대로 저장했기 때문에 텍스트를 메모장에서 확인할 수 없다.(이상하게 나옴)
+
+     } catch(IOException e) {
       e.printStackTrace();
     } finally {
       try {
@@ -208,10 +214,6 @@ public class MainWrapper {
         e.printStackTrace();
       }
     }
-    
-    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
-    // 변수값 그대로 저장했기 때문에 텍스트를 메모장에서 확인할 수 없다.(이상하게 나옴)
-    
   }
   
   public static void ex05() {
@@ -252,7 +254,9 @@ public class MainWrapper {
       // 변환과 출력 한 번에 하기 (변환하여 파일로 데이터 보내기)
       oout.writeObject(student);
       
-    } catch(IOException e) {
+      System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+
+     } catch(IOException e) {
       e.printStackTrace();
     } finally {
       try {
@@ -263,9 +267,6 @@ public class MainWrapper {
         e.printStackTrace();
       }
     }
-    
-    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
-    
   }
   
   public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class MainWrapper {
     int hour = localDateTime.getHour();
    
     StringBuilder sb = new StringBuilder();
-    sb.append("C:/");
+    sb.append("D:/");
     sb.append(year);
     sb.append("/");
     sb.append(String.format("%02d", month));
