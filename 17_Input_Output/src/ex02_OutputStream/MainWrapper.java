@@ -1,10 +1,11 @@
-package ex02_Output;
+package ex02_OutputStream;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.spec.DSAGenParameterSpec;
 
@@ -269,9 +270,63 @@ public class MainWrapper {
     
   }
   
+  public static void ex05() {
+    
+    // 스트림에 객체가 담아지지 않아서 객체를 직렬화과정을 거치게 해야함.
+    // 객체가 썰기 전의 김밥이라고 생각. 직렬화 후는 썰어놓은 김밥.
+    // 객체를 통째로 보낼 수 없어서 잘게 쪼개서 보내겠다!
+    // 직렬화된 객체가 보이면 스트림으로 이동시키고 싶어서 직렬화 했구나~
+    
+    /*
+     * java.io.ObjectOutputStream 클래스
+     * 1. 객체를 그대로 출력하는 출력스트림이다.
+     * 2. 직렬화(Serializable)된 객체를 보낼 수 있다.
+     * 3. 보조스트림이므로 메인스트림과 함께 사용한다.
+     */
+    
+ // 디렉터리를 File 객체로 만들기
+    File dir = new File("C:/storage");
+    
+    // 파일을 File 객체로 만들기
+    File file = new File(dir, "ex05.dat");
+    
+    // 객체출력스트림 선언
+    ObjectOutputStream oout = null;
+    
+     try {
+      
+      // 객체출력스트림 생성 (반드시 예외 처리가 필요한 코드)
+       oout = new ObjectOutputStream(new FileOutputStream(file));
+      
+      // 출력할 데이터(파일로 보낼 데이터)
+      String name = "tom";
+      int age = 50;
+      double height = 180.5;
+      String school = "가산대학교";
+      Student student = new Student(name, age, height, school);
+      
+      // 변환과 출력 한 번에 하기 (변환하여 파일로 데이터 보내기)
+      oout.writeObject(student);
+      
+    } catch(IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(oout != null) {
+          oout.close();
+        }
+      } catch(IOException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+    
+  }
+  
   public static void main(String[] args) {
     
-    ex04();
+    ex05();
 
     
   }
