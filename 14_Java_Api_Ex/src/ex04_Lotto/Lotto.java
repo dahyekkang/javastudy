@@ -1,8 +1,8 @@
 package ex04_Lotto;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
-
-import javax.management.RuntimeErrorException;
 
 public class Lotto {
   
@@ -13,15 +13,17 @@ public class Lotto {
    * @return money 사용자가 입력한 로또 구매 비용에서 1000 미만 단위는 버리고 반환. ex) 5999 입력 시 5000 반환
    * @return 0 로또 구매 실패 시 반환
    */
-  public int buyLotto() {
+  public int buyLotto() throws RuntimeException {
     Scanner sc = new Scanner(System.in);
     System.out.println("Lotto를 얼마나 구입하시겠습니까?(최대 10만원) >>> ");
     int money = sc.nextInt();
-    if(money <= 0) {
-      System.out.println(money + "원 Lotto 구매는 불가능합니다.");
-      return;
+    if(money < 1000 || money > 100000) {
+      money = 0;
+      throw new RuntimeException(money + "원 Lotto 구매는 불가능합니다.");
+    } else {
+      money = money / 1000 * 1000;
     }
-    return 0;
+    return money;
   }
   
   /**
@@ -32,6 +34,40 @@ public class Lotto {
    */
   public void generateLotto(int money) {
     
+    
+
+    int cnt = money/1000;
+    int N = 6;
+    int[] lotto = new int[N];
+    int[] temp = new int[N];
+    
+    Random random = new Random();
+    
+    for(int n = 0; n < cnt; n++) {
+      System.out.print(String.format("%02d", n%5+1) + " : ");
+      
+      for(int i = 0; i < N; i++) {
+        temp[i] = random.nextInt(45) + 1;
+        if(i == 0) {
+          lotto[i] = temp[i];
+        }
+        for(int j = 0; j < i; j++) {
+          if(temp[j] == temp[i]) {
+            i--;
+            break;
+          } else {
+            lotto[i] = temp[i];          
+          }
+        }
+      }
+      
+      for(int i = 0; i < N; i++) {
+        System.out.print(String.format("%4d", lotto[i]));
+      }
+      System.out.println();
+      if((n+1)%5 == 0) {
+        System.out.println("----------------------------------");
+      }
+    }
   }
-  
 }
