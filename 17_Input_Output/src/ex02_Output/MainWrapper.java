@@ -1,10 +1,16 @@
 package ex02_Output;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.spec.DSAGenParameterSpec;
 
 public class MainWrapper {
+  
+  // 출력 스트림은 덮어쓰기 방식이다.
 
   /*
    * java.io.OutputStream 클래스
@@ -73,6 +79,9 @@ public class MainWrapper {
     // C:\storage\ex02.dat 파일로 "안녕하세요" 보내기, 파일 크기 확인
     
     File dir = new File("C:/storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
     
     File file = new File(dir, "ex02.dat");
     
@@ -106,10 +115,165 @@ public class MainWrapper {
     
   }
   
+  
+  
+  public static void ex03() {
+    
+    // 파일아웃풋스트림 그대로 써서 2줄로 안녕하세요 반갑습니다 출력
+    
+    File dir = new File("C:/storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    File file = new File(dir, "ex03.dat");
+    
+    // 파일출력스트림 선언
+    FileOutputStream fout = null;
+    
+    try {
+      
+      // 파일출력스트림 생성 (반드시 예외 처리가 필요한 코드)
+      fout = new FileOutputStream(file);
+      
+      // 출력할 데이터(파일로 보낼 데이터)
+      String s1 = "안녕하세요";
+      String s2 = "반갑습니다";
+      int c = '\n';
+      
+      // 변환과 출력 한 번에 하기
+      fout.write(s1.getBytes("UTF-8"));
+      fout.write(c);
+      fout.write(s2.getBytes(StandardCharsets.UTF_8));    // getBytes("UTF-8")과 동일하다.
+      
+    } catch(IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(fout != null) {
+          fout.close();
+        }
+      } catch(IOException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+    
+    
+  }
+  
+  
+  public static void ex03_1() {
+    
+    /*
+     * java.io.BuffedOutputStream 클래스
+     * 1. 내부 버퍼를 가지고 있는 출력스트림이다.
+     * 2. 많은 데이터를 한 번에 출력하기 때문에 속도 향상을 위해서 사용한다.
+     * 3. 보조스트림이므로 메인스트림과 함께 사용한다.
+     */
+    
+    // 디렉터리를 File 객체로 만들기
+    File dir = new File("C:/storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    // 파일을 File 객체로 만들기
+    File file = new File(dir, "ex03.dat");
+    
+    // 파일아웃풋스트림 : 한 번에 하나씩 내보내는 것
+    
+    // 버퍼출력스트림 선언 : 잔뜩 실어서 한 번에 내보내는 방식! 속도 향상을 위해 사용 (이름은 버퍼드 아웃풋 스트림)
+    BufferedOutputStream bout = null;
+    
+    try {
+      
+      // 버퍼출력스트림 생성 (반드시 예외 처리가 필요한 코드)
+      bout = new BufferedOutputStream(new FileOutputStream(file));
+      
+      // 출력할 데이터(파일로 보낼 데이터)
+      String s1 = "안녕하세요";
+      String s2 = "반갑습니다";
+      int c = '\n';
+      
+      // 변환과 출력 한 번에 하기 (변환하여 파일로 데이터 보내기)
+      bout.write(s1.getBytes("UTF-8"));
+      bout.write(c);
+      bout.write(s2.getBytes(StandardCharsets.UTF_8));    // getBytes("UTF-8")과 동일하다.
+      
+    } catch(IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(bout != null) {
+          bout.close();
+        }
+      } catch(IOException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+    
+    
+  }
+  
+  public static void ex04() {
+    
+    /*
+     * java.io.DataOutputStream 클래스
+     * 1. int, double, String 등의 변수를 그대로 출력하는 출력스트림이다.
+     * 2. 보조스트림으므로 메인스트림과 함께 사용한다.
+     */
+    
+    // 디렉터리를 File 객체로 만들기
+    File dir = new File("C:/storage");
+    
+    // 파일을 File 객체로 만들기
+    File file = new File(dir, "ex04.dat");
+    
+    // 데이터출력스트림 선언
+    DataOutputStream dout = null;
+    
+     try {
+      
+      // 데이터출력스트림 생성 (반드시 예외 처리가 필요한 코드)
+      dout = new DataOutputStream(new FileOutputStream(file));
+      
+      // 출력할 데이터(파일로 보낼 데이터)
+      String name = "tom";
+      int age = 50;
+      double height = 180.5;
+      String school = "가산대학교";
+      
+      // 변환과 출력 한 번에 하기 (변환하여 파일로 데이터 보내기)
+      dout.writeChars(name);  // 영어여서 byte로 해도 된다.
+      dout.writeInt(age);    // 이거 써야함 선택불가
+      dout.writeDouble(height);   // 이거 써야함 선택불가
+      dout.writeUTF(school);    // 한글 처리.
+      
+    } catch(IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(dout != null) {
+          dout.close();
+        }
+      } catch(IOException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    System.out.println(file.getPath() + "파일 크기 : " + file.length() + "바이트");
+    // 변수값 그대로 저장했기 때문에 텍스트를 메모장에서 확인할 수 없다.(이상하게 나옴)
+    
+  }
+  
   public static void main(String[] args) {
     
-    ex02();
+    ex04();
 
+    
   }
 
 }
