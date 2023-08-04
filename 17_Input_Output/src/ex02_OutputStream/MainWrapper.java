@@ -23,7 +23,7 @@ public class MainWrapper {
   public static void ex01() {
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     if(!dir.exists()) {
       dir.mkdirs();
     }
@@ -75,9 +75,9 @@ public class MainWrapper {
 
   public static void ex02() {
     
-    // C:\storage\ex02.dat 파일로 "안녕하세요" 보내기, 파일 크기 확인
+    // D:\storage\ex02.dat 파일로 "안녕하세요" 보내기, 파일 크기 확인
     
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     if(!dir.exists()) {
       dir.mkdirs();
     }
@@ -123,7 +123,7 @@ public class MainWrapper {
      */
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     if(!dir.exists()) {
       dir.mkdirs();
     }
@@ -175,7 +175,7 @@ public class MainWrapper {
      */
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex04.dat");
@@ -231,7 +231,7 @@ public class MainWrapper {
      */
     
  // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex05.dat");

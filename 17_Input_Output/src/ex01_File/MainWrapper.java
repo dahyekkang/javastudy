@@ -31,16 +31,16 @@ public class MainWrapper {
     File dir;   // 패키지.클래스 import
     
     // File 객체 생성
-    dir = new File("C:" + sep + "storage");    // C드라이브 아래에 있는 storage 디렉터리
+    dir = new File("D:" + sep + "storage");    // D드라이브 아래에 있는 storage 디렉터리
     
-    // C:\storage 디렉터리가 없으면 만들고, 있으면 지우기
+    // D:\storage 디렉터리가 없으면 만들고, 있으면 지우기
     if(dir.exists()) {
       // dir.deleteOnExit();   // Java 실행이 끝나면 지운다.
       dir.delete();         // 지금 당장 지운다.
-      System.out.println("C:\\storage 디렉터리 삭제 완료");
+      System.out.println("D:\\storage 디렉터리 삭제 완료");
     } else {
       dir.mkdirs();     // 디렉터리 내부에 또 다른 디렉터리도 만들 수 있다.
-      System.out.println("C:\\storage 디렉터리 생성 완료");
+      System.out.println("D:\\storage 디렉터리 생성 완료");
     }
   }
   
@@ -50,7 +50,7 @@ public class MainWrapper {
     
     try {
       // 디렉터리를 File 객체로 생성
-      File dir = new File("C:/storage");    // Windows 플랫폼에서도 슬래시(/)가 인식된다.
+      File dir = new File("D:/storage");    // Windows 플랫폼에서도 슬래시(/)가 인식된다.
       
       // 디렉터리가 없으면 만들기
       if(!dir.exists()) {

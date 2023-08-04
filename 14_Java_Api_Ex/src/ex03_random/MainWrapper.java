@@ -16,11 +16,10 @@ public class MainWrapper {
     
     Random random = new Random();
     
-    for(int i = 0; i < dice.length; i++) {
-      int randomdice = random.nextInt(6) + 1;
-      dice[i] = randomdice;
+    for(int i = 0; i < dice.length; i++) {;
+      dice[i] = random.nextInt(6) + 1;    // (0~5) + 1 => 1~6
     }
-    System.out.println(Arrays.toString(dice));
+    System.out.println("주사위 : " + Arrays.toString(dice));
     
   }
   
@@ -312,7 +311,7 @@ public class MainWrapper {
   
   
   public static void main(String[] args) {
-    //ex01();
+    ex01();
     //ex02();
     //ex03();
     //ex04();

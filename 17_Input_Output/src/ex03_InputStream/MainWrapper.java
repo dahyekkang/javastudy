@@ -22,7 +22,7 @@ public class MainWrapper {
   public static void ex01() {
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex01.dat");
@@ -74,7 +74,7 @@ public class MainWrapper {
     // 바이트 기반 스트림은 원래 한글 처리가 안 된다.
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex02.dat");
@@ -165,7 +165,7 @@ public class MainWrapper {
      */
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex03.dat");
@@ -233,7 +233,7 @@ public class MainWrapper {
      */
     
     // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex04.dat");
@@ -283,7 +283,7 @@ public class MainWrapper {
      */
     
  // 디렉터리를 File 객체로 만들기
-    File dir = new File("C:/storage");
+    File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기
     File file = new File(dir, "ex05.dat");
