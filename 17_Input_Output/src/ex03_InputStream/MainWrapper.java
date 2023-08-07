@@ -282,7 +282,7 @@ public class MainWrapper {
      * 3. 보조스트림이므로 메인스트림과 함께 사용한다.
      */
     
- // 디렉터리를 File 객체로 만들기
+    // 디렉터리를 File 객체로 만들기
     File dir = new File("D:/storage");
     
     // 파일을 File 객체로 만들기

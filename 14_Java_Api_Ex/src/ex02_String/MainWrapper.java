@@ -1,6 +1,5 @@
 package ex02_String;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -12,26 +11,23 @@ public class MainWrapper {
   // String param = "titleId=758037&no=112&weekday=mon";            // 물음표(?) 이후 문자열만 추출
   public static void ex01() {
     String url = "https://comic.naver.com/webtoon/detail?titleId=758037&no=112&weekday=mon";
-    String requestURI = "";
-    String param = "";
     
-    requestURI = url.substring(0, url.indexOf("?"));
-    param = url.substring(url.indexOf("?") + 1);
+    String requestURI = url.substring(0, url.indexOf("?"));
+    String param = url.substring(url.indexOf("?") + 1);
     System.out.println("String requestURI = " + requestURI);
     System.out.println("String param = " + param);
   }
 
   // 문제2. 다음 파일명을 분석하여 파일명과 확장자를 분리하시오.
-  // String fullName = "apple.jpg";
+  // String fullName = "a.p.p.l.e.jpg";
   // String fileName = "apple";
   // String extName = "jpg";
   public static void ex02() {
-    String fullName = "apple.jpg";
-    String fileName = "";
-    String extName = "";
+    String fullName = "a.p.p.l.e.jpg";
     
-    fileName = fullName.substring(0, fullName.indexOf("."));
-    extName = fullName.substring(fullName.indexOf(".") + 1);
+    String fileName = fullName.substring(0, fullName.lastIndexOf("."));
+    fileName = fileName.replaceAll("[.]", "");
+    String extName = fullName.substring(fullName.lastIndexOf(".") + 1);
     
     System.out.println("String fileName = " + fileName);
     System.out.println("String extNmae = " + extName);
@@ -55,9 +51,10 @@ public class MainWrapper {
     if(beforeName.contains(" ")) {
       return;
     }
-    afterName = beforeName.substring(0, beforeName.indexOf(".")) + "_" + timestamp + beforeName.substring(beforeName.indexOf("."));
+    afterName = beforeName.substring(0, beforeName.lastIndexOf(".")) + "_" + timestamp + beforeName.substring(beforeName.lastIndexOf("."));
 
     System.out.println("변환 후 파일명 = " + afterName);
+    sc.close();
     
   }
   
@@ -117,7 +114,7 @@ public class MainWrapper {
   public static void main(String[] args) {
     //ex01();
     //ex02();
-    //ex03();
+    ex03();
     //ex04();
     //ex05();
   }
