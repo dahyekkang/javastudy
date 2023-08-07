@@ -1,4 +1,4 @@
-package ex02_api;
+package ex03_api;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,18 +14,19 @@ import java.net.URLEncoder;
 
 public class MainWrapper {
   
-  public static void ex01() {
+  public static void main(String[] args) {
+     
+    // 문제. 공공데이터포털(data.go.kr)에서 "한국전력공사_전기차 충전소 운영정보" API를 신청하고
+    // 결과를 "C:/storage/한국전력공사_전기차_충전소_운영정보.xml"로 저장하시오.
     
     /*
-     * 한국환경공단 에어코리아 대기오염정보 - 시도별 실시간 측정정보 조회
-     * 1. 요청주소 : http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty
-     * 2. 요청변수(Request Parameter)
-     *    1) serviceKey : 필수, 인코딩된 인증키
-     *    2) returnType : 선택, xml 또는 json
-     *    3) numOfRows  : 선택, 100
-     *    4) pageNo     : 선택, 1
-     *    5) sidoName   : 필수, 서울
-     *    6) ver        : 선택, 1.0
+     * 한국전력공사_전기차_충전소_운영정보
+     * 1. 요청주소 : http://openapi.kepco.co.kr/service/EvInfoServiceV2/getEvSearchList
+     * 2. 요청변수
+     *    1) serviceKey : 필수, 인코딩된 인증키 
+     *    2) pageNo     : 필수, 1
+     *    3) numOfRows  : 필수, 10
+     *    4) addr       : 선택, 전라남도 나주시 빛가람동 120
      */
     
     URL url = null;
@@ -35,25 +36,21 @@ public class MainWrapper {
     
     try {
       
-      String spec = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty";
+      String spec = "http://openapi.kepco.co.kr/service/EvInfoServiceV2/getEvSearchList";
       String serviceKey = "eWS3MmDOnr1KAUdhzwMm0dRIQNevjKpQxELIsFStXX8YiSkb+lNJD1IiNTdTIkFjCgVlXu1HyRgz19OwVpA/nw==";
-      String returnType = "xml";
-      String numOfRows = "100";
       String pageNo = "1";
-      String sidoName = "서울";
-      String ver = "1.0";
+      String numOfRows = "10";
+      String addr = "전라남도 나주시 빛가람동 120";
       
       StringBuilder sb = new StringBuilder();
       sb.append(spec);
-      sb.append("?serviceKey=").append(URLEncoder.encode(serviceKey, "UTF-8")); // UnsupportedEncodingException
-      sb.append("&returnType=").append(returnType);
-      sb.append("&numOfRows=").append(numOfRows);
-      sb.append("&pageNo=").append(pageNo);
-      sb.append("&sidoName=").append(URLEncoder.encode(sidoName, "UTF-8"));
-      sb.append("&ver=").append(ver);
+      sb.append("?serviceKey=").append(URLEncoder.encode(serviceKey, "UTF-8"));
+      sb.append("&pageNo=").append(URLEncoder.encode(pageNo, "UTF-8"));
+      sb.append("&numOfRows=").append(URLEncoder.encode(numOfRows, "UTF-8"));
+      sb.append("&addr=").append(URLEncoder.encode(addr, "UTF-8"));
       
-      url = new URL(sb.toString());   // MalformedException
-      con = (HttpURLConnection)url.openConnection();  // IOException
+      url = new URL(sb.toString());
+      con = (HttpURLConnection)url.openConnection();
       
       int responseCode = con.getResponseCode();
       if(responseCode != HttpURLConnection.HTTP_OK) {
@@ -62,24 +59,26 @@ public class MainWrapper {
       
       reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
       
-      StringBuilder sbuf = new StringBuilder();
+      StringBuilder sbu = new StringBuilder();
       String line = null;
       while((line = reader.readLine()) != null) {
-        sbuf.append(line + "\n");
-        }
-      System.out.println(sbuf);
-     
+        sbu.append(line + "\n");
+      }
+      
+      System.out.println(sbu);
+      
       File dir = new File("D:/storage");
       if(dir.exists() == false) {
         dir.mkdirs();
       }
-      File file = new File(dir, "시도별_실시간_측정정보_조회.xml");
+      File file = new File(dir, "한국전력공사_전기차_충전소_운영정보.xml");
+      
       writer = new BufferedWriter(new FileWriter(file));
-      writer.write(sbuf.toString());
+      writer.write(sbu.toString());
       
       System.out.println(file.getPath() + " 파일 생성 완료");
       
-    } catch(UnsupportedEncodingException e) {
+    } catch(UnsupportedEncodingException e){
       System.out.println(e.getMessage());
     } catch(MalformedURLException e) {
       System.out.println(e.getMessage());
@@ -87,21 +86,15 @@ public class MainWrapper {
       System.out.println(e.getMessage());
     } catch(RuntimeException e) {
       System.out.println(e.getMessage());
-    } finally {
+    }
+    finally {
       try {
         if(writer != null) writer.close();
         if(reader != null) reader.close();
-        if(con != null) con.disconnect();
+        if(con != null) con.disconnect();        
       } catch(IOException e) {
-        e.printStackTrace();
+        System.out.println(e.getMessage());
       }
     }
   }
-  
-  public static void main(String[] args) {
-    
-    ex01();
-    
-  }
-
 }
