@@ -19,13 +19,21 @@ public class MainWrapper {
     
     // Supplier 객체의 람다 표현식 생성
     Supplier<String> supplier = () -> "Hello World";
-    
+    System.out.println(supplier.get()); 
+  }
+  
+  public static void ex02(Supplier<String> supplier) {
     System.out.println(supplier.get());
-    
+  }
+  
+  public static void ex03(Supplier<Integer> supplier) {
+    System.out.println(supplier.get());
   }
   
   public static void main(String[] args) {
-    ex01();
+    //ex01();
+    //ex02(() -> "Hello World");
+    ex03(() -> (int)(Math.random() * 10));
   }
   
 }
