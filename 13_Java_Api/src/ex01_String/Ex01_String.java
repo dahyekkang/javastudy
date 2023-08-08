@@ -296,7 +296,7 @@ public class Ex01_String {
   
   public static void main(String[] args) {
     
-    ex11();
+    ex12();
 
   }
 
