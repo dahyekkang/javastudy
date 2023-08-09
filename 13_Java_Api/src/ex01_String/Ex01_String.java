@@ -1,5 +1,7 @@
 package ex01_String;
 
+import java.util.Arrays;
+
 public class Ex01_String {
   
   
@@ -294,9 +296,17 @@ public class Ex01_String {
     
   }
   
+  public static void ex15_1() {
+    
+    String str = "Hello World!";
+    String[] arr = str.split(" ");
+    System.out.println(Arrays.toString(arr));
+    
+  }
+  
   public static void main(String[] args) {
     
-    ex12();
+    ex15_1();
 
   }
 

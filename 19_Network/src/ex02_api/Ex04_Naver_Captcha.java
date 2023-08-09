@@ -8,10 +8,11 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 
 import org.json.JSONObject;
 
-public class NaverCaptcha {
+public class Ex04_Naver_Captcha {
   
   private static final String CLIENT_ID = "Y3_YnXvT1PIn8b0oRnG9";
   private static final String CLIENT_SECRET = "dNU2sXe73m";
@@ -41,10 +42,8 @@ public class NaverCaptcha {
       StringBuilder sb = new StringBuilder();
       String line = null;
       while((line = reader.readLine()) != null) {
-        sb.append(line + "\n");
+        sb.append(line);
       }
-      
-      System.out.println(sb.toString());
       
       JSONObject obj = new JSONObject(sb.toString());
       result = obj.getString("key");
@@ -63,16 +62,17 @@ public class NaverCaptcha {
     
   }
   
-  private static void getImage() {
+  private static String getImage() {
     
     URL url = null;
     HttpURLConnection con = null;
     BufferedInputStream bin = null;
     BufferedOutputStream bout = null;
+    String key = null;
     
     try {
-      String key = getKey();    
-      String spec = "https://openapi.naver.com/v1/captcha/ncaptcha.bin" + key;
+      key = getKey();    
+      String spec = "https://openapi.naver.com/v1/captcha/ncaptcha.bin?key=" + key;
       
       url = new URL(spec);
       con = (HttpURLConnection)url.openConnection();    // 주소가 달라져서 당연히 또 해야함
@@ -104,7 +104,6 @@ public class NaverCaptcha {
       while((readByte = bin.read(b)) != -1) {
         bout.write(b, 0, readByte);
       }
-      System.out.println(file.getPath() + " 파일 생성 완료");
     } catch (Exception e) {
       System.out.println(e.getMessage());
     } finally {
@@ -116,13 +115,72 @@ public class NaverCaptcha {
         e.printStackTrace();
       }
     }
+    return key;
+    
+  }
+  
+  private static void validInput() {
+    
+    URL url = null;
+    HttpURLConnection con = null;
+    BufferedReader reader = null;
+    
+    
+    try {
+      
+      String key = getImage();
+      
+      Scanner sc = new Scanner(System.in);
+      System.out.print("입력 >> ");
+      String value = sc.next();
+      String spec = "https://openapi.naver.com/v1/captcha/nkey?code=1&key=" + key + "&value=" + value;
+      sc.close();
+      
+      url = new URL(spec);
+      con = (HttpURLConnection) url.openConnection();
+      
+      con.setRequestMethod("GET");
+      con.setRequestProperty("X-Naver-Client-Id", CLIENT_ID);
+      con.setRequestProperty("X-Naver-Client-Secret", CLIENT_SECRET);
+      
+      int responseCode = con.getResponseCode();
+      if(responseCode != 200) {
+        throw new RuntimeException(responseCode + " 발생");
+      }
+      
+      reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      
+      StringBuilder sb = new StringBuilder();
+      
+      String line = null;
+      while((line = reader.readLine()) != null) {
+        sb.append(line);
+      }
+      
+      JSONObject obj = new JSONObject(sb.toString());
+      System.out.println("응답시간 : " + obj.getDouble("responseTime"));
+      if(obj.getBoolean("result")) {
+        System.out.println("올바른 값입니다.");
+      } else {
+        System.out.println("올바른 값이 아닙니다.");
+      }
+      
+      sc.close();
+      
+    } catch(Exception e) {
+      System.out.println(e.getMessage());
+    } finally {
+      try {
+        if(reader != null) reader.close();
+        if(con != null) con.disconnect();
+      } catch(Exception e) {
+        e.printStackTrace();
+      }
+    }
   }
   
   public static void main(String[] args) {
-    
-    String key = getKey();
-    System.out.println("캡차키 : " + key);
-    getImage();
+    validInput();
   }
 
 }

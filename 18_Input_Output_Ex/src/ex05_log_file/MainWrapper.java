@@ -1,8 +1,13 @@
 package ex05_log_file;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,12 +17,6 @@ public class MainWrapper {
     
     @SuppressWarnings("resource")  // sc.close()를 생략해도 경고 메시지를 보이지 말라.
     Scanner sc = new Scanner(System.in);
-
-    FileWriter fw = null;
-    File dir = new File("D:/storage");
-    File file = new File(dir, "log.txt");
-
-    Date date = new Date();
 
     while(true) {
       
@@ -44,33 +43,49 @@ public class MainWrapper {
         
         System.out.println(n1 + op + n2 + "=" + result);
         
-      } catch(Exception e1) {
-        try {
+      } catch(Exception e) {
         
-        fw = new FileWriter(file, true);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String strDate = sdf.format(date);
-        fw.write(strDate + "  " + e1.getMessage() + "\n");
-      } catch(Exception e2) {
-        e2.printStackTrace();
+        sc.nextLine();
+        
+        // 문제. 예외가 발생할때마다 예외가 발생한 시간과 예외 메시지(message)를 C:/storage/log.txt 파일에 기록하시오.
+        // C:/storage/log.txt 파일 내용 예시)
+        // 2023-08-04 오후 3:10:30    / by zero
+        // 2023-08-04 오후 3:11:23    invalid operator ++
+        // 2023-08-04 오후 3:12:52    null
+        
+        // 예외 발생 시간
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd a h:mm:ss");
+        String time = dtf.format(now);
+        
+        // 예외메시지
+        String message = e.getMessage();
+        
+        // 예외 클래스
+        String clazz = e.getClass().getName();
+        
+        // File 객체
+        File dir = new File("D:/storage");
+        if(dir.exists() == false) {
+          dir.mkdirs();
         }
-      } finally {
-        try {
-          if(fw != null) {
-            fw.close();
-          }
-        } catch(Exception e3) {
-          e3.printStackTrace();
-        }      
+        File file = new File(dir, "log.txt");
+        
+        // try-catch-resources
+        // 추가 모드 : 기존 파일에 내용을 추가하는 모드 new FileWriter(file, true)
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+          
+          // 로그 파일에 "시간 예외메시지 예외클래스" 추가하기
+          bw.write(time + "  " + String.format("%-30s", message) + " " + String.format("%-50s", clazz));
+          bw.newLine();
+          
+          // 결과 메시지 
+          System.out.println(file.getPath() + " 파일의 예외 처리 완료");
+          
+        } catch(IOException e2) {
+          e2.printStackTrace();
+        }
       }
-      sc.nextLine();
     }
   }
-  
-  // 문제. 예외가 발생할때마다 예외가 발생한 시간과 예외 메시지(message)를 C:/storage/log.txt 파일에 기록하시오.
-  // C:/storage/log.txt 파일 내용 예시)
-  // 2023-08-04 15:10:30    / by zero
-  // 2023-08-04 15:11:23    invalid operator ++
-  // 2023-08-04 15:12:52    null
-
 }
