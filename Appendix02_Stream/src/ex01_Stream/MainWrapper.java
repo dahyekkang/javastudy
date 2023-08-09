@@ -70,6 +70,7 @@ public class MainWrapper {
     
   }
   
+  
   /* 각종 스트림 생성 방법 */
   public static void ex04() {
     
@@ -196,12 +197,12 @@ public class MainWrapper {
 //    ex02();
 //    ex03();
 //    ex04();
-//    ex05();
+    ex05();
 //    ex06();
 //    ex07();
 //    ex08();
 //    ex09();
-    ex10();
+//    ex10();
   }
 
 }

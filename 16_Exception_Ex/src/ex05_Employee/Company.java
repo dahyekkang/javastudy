@@ -18,15 +18,30 @@ public class Company {
 		System.out.println("===== 고용 =====");
 		  System.out.print("고용 형태 선택(1.정규 2.프리랜서) >>> ");
 		  int type = sc.nextInt();
-		  if(type == 1) {
+		  if(type != 1 && type != 2) {
+		    throw new RuntimeException("잘못된 고용 형태입니다.");
+		  }
 		  System.out.print("사원 번호 입력 >>> ");
-		  int empNo = sc.nextInt();
+		  String empNo = sc.next();
 		  System.out.print("사원명 입력 >>> ");
 		  String name = sc.next();
-		  System.out.print("기본급 입력 >>> ");
-		  int salary = sc.nextInt();
-//		  employees;
-		}
+
+		  // 정규직 등록
+		  if(type == 1) {
+		    System.out.print("기본급 입력 >>> ");
+		    int salary = sc.nextInt();
+		    employees.add((Employee)(new Regular(empNo, name)));
+		  }
+		  
+		  // 프리랜서 등록
+		  if(type == 2) {
+		    System.out.println("시간당 임금 입력 >>> ");
+		    int hourlyWage = sc.nextInt();
+		    System.out.println("근무한 시간 입력 >>> ");
+		    int workingHours = sc.nextInt();
+		    employees.add((Employee)(new Freelance(empNo, name)));
+		  }
+		  System.out.println("사원 등록이 완료되었습니다. 현재 등록된 사원은 " + employees.size() + "명입니다.");
 		
 		
 	}
