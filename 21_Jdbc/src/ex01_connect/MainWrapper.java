@@ -10,6 +10,8 @@ import java.util.Properties;
 
 public class MainWrapper {
 
+  // Class.forName(package.class): package 내의 class를 메모리에 로드시킨다.
+  // 예외 처리를 해주어야 한다.
   
   // 1. oracle.jdbc.OracleDriver 클래스 Load
   public static void ex01() {
@@ -115,11 +117,11 @@ public class MainWrapper {
   
   public static void main(String[] args) throws Exception {
 //    ex01();
-//    ex02();
+    ex02();
 //    ex03();
-    Connection con = getConnection();
-    System.out.println("Oracle에 접속되었습니다.");
-    con.close();
+//    Connection con = getConnection();
+//    System.out.println("Oracle에 접속되었습니다.");
+//    con.close();
   }
 
 }

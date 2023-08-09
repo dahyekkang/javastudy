@@ -47,6 +47,7 @@ public class MainWrapper {
       // 쿼리문에 변수 넣기
       ps.setString(1, user.getUser_id());   // 1번째 물음표 <- user.getUser_id()
       ps.setString(2, user.getUser_name()); // 2번째 물음표 <- user.getUser_name()
+
       
       // 쿼리문 실행 : insert 된 행의 개수가 반환된다.
       int insertResult = ps.executeUpdate();
@@ -67,8 +68,5 @@ public class MainWrapper {
         e.printStackTrace();
       }
     }
-    
-    
   }
-  
 }
