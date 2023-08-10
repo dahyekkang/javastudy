@@ -1,6 +1,7 @@
 package ex05_Employee;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,35 +20,59 @@ public class Company {
 		  System.out.print("고용 형태 선택(1.정규 2.프리랜서) >>> ");
 		  int type = sc.nextInt();
 		  if(type != 1 && type != 2) {
-		    throw new RuntimeException("잘못된 고용 형태입니다.");
+		    throw new RuntimeException("올바르지 않은 고용 형태입니다.");
 		  }
 		  System.out.print("사원 번호 입력 >>> ");
 		  String empNo = sc.next();
 		  System.out.print("사원명 입력 >>> ");
 		  String name = sc.next();
 
-		  // 정규직 등록
-		  if(type == 1) {
-		    System.out.print("기본급 입력 >>> ");
-		    int salary = sc.nextInt();
-		    employees.add((Employee)(new Regular(empNo, name)));
+		  try {
+		    
+		    // 정규직 등록
+		    if(type == 1) {
+		      System.out.print("기본급 입력 >>> ");
+		      int salary = sc.nextInt();
+		      if(salary <= 0) {
+		        throw new RuntimeException("기본급");
+		      }
+		      employees.add((Employee)(new Regular(empNo, name)));
+		    }
+		    
+		    // 프리랜서 등록
+		    if(type == 2) {
+		      System.out.println("시간당 임금 입력 >>> ");
+		      int hourlyWage = sc.nextInt();
+          if(hourlyWage <= 0) {
+            throw new RuntimeException("시간당 임금");
+          }
+		      System.out.println("근무한 시간 입력 >>> ");
+		      int workingHours = sc.nextInt();
+          if(workingHours <= 0) {
+            throw new RuntimeException("근무한 시간");
+          }
+		      employees.add((Employee)(new Freelance(empNo, name)));
+		    }
+		    // 사원 등록 확인
+		    System.out.println("사원 등록이 완료되었습니다. 현재 등록된 사원은 " + employees.size() + "명입니다.");
+		    
+		  } catch(InputMismatchException e) {
+		    System.out.println("기본급, 시간당 금액, 근무한 시간은 모두 정수로 입력해야 합니다.");
+		  } catch(RuntimeException e) {
+		    System.out.println(e.getMessage() + "은 0보다 작거나 같을 수 없습니다.");
 		  }
-		  
-		  // 프리랜서 등록
-		  if(type == 2) {
-		    System.out.println("시간당 임금 입력 >>> ");
-		    int hourlyWage = sc.nextInt();
-		    System.out.println("근무한 시간 입력 >>> ");
-		    int workingHours = sc.nextInt();
-		    employees.add((Employee)(new Freelance(empNo, name)));
-		  }
-		  System.out.println("사원 등록이 완료되었습니다. 현재 등록된 사원은 " + employees.size() + "명입니다.");
-		
 		
 	}
 	
 	public void dropEmployee() {
 		System.out.println("===== 해고 =====");
+		System.out.println("삭제할 사원번호 입력 >>> ");
+		String empNo = sc.next();
+//		if(employees.size() == 0) {
+//		  throw new RuntimeException("해고할 사원이 없습니다.")
+//		}
+		
+		
 		
 	}
 	
