@@ -12,6 +12,9 @@ import java.util.Properties;
 
 import dto.ContactDto;
 
+//ContactMain -> ContactController -> ContactService -> ContactDao -> DB
+
+
 // Contact table에 접근하기 위한 객체를 따로 만듦
 
 /*
@@ -85,6 +88,8 @@ public class ContactDao {
    */
   public int insert(ContactDto contactDto) {
     
+    System.out.println("Dao::" + contactDto);
+    
     int insertCount = 0;
     
     try {
@@ -114,6 +119,8 @@ public class ContactDao {
    * @return updateCount 수정된 행(Row)의 개수, 1이면 수정 성공, 0이면 수정 실패
    */
   public int update(ContactDto contactDto) {
+    
+    System.out.println("Dao::" + contactDto);
     
     int updateCount = 0;
     
@@ -145,6 +152,8 @@ public class ContactDao {
    * @return deleteCount 삭제된 행(Row)의 개수, 1이면 삭제 성공, 0이면 삭제 실패
    */
   public int delete(int contact_no) {
+    
+    System.out.println("Dao::" + contact_no);
     
     int deleteCount = 0;
     
@@ -206,6 +215,8 @@ public class ContactDao {
    * @return contactDto 조회된 연락처 정보, 조회된 연락처가 없으면 null 반환
    */
   public ContactDto selectContactByNo(int contact_no) {
+    
+    System.out.println("Dao::" + contact_no);
     
     ContactDto contactDto = null;
     
