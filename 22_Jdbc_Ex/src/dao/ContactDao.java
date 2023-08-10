@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import dto.ContactDto;
@@ -174,7 +176,40 @@ public class ContactDao {
     
   }
   
-  
+  /**
+   * 전체 조회 메소드<br>
+   * @return 조회된 모든 연락처 정보(ContactDto)
+   */
+  public List<ContactDto> selectList(){
+    
+    List<ContactDto> list = new ArrayList<ContactDto>();
+    
+    try {
+      
+      con = getConnection();
+      String sql = "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS FROM CONTACT_T ORDER BY CONTACT_NO ASC";
+      ps = con.prepareStatement(sql);
+      rs = ps.executeQuery();
+      while(rs.next()) {
+        ContactDto contactDto = new ContactDto();
+        contactDto.setContact_no(rs.getInt("CONTACT_NO"));
+        contactDto.setName(rs.getString("NAME"));
+        contactDto.setTel(rs.getString("TEL"));
+        contactDto.setEmail(rs.getString("EMAIL"));
+        contactDto.setAddress(rs.getString("ADDRESS"));
+        contactDto.setCreated_at(rs.getString("CREATED_AT"));
+        list.add(contactDto);
+      }
+      
+    } catch(Exception e) {
+      e.printStackTrace();
+    } finally {
+      close();
+    }
+    
+    return list;
+    
+  }
   
   
   
