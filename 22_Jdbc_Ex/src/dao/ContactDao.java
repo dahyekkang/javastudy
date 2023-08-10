@@ -1,6 +1,5 @@
 package dao;
 
-import java.awt.dnd.DropTargetAdapter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -42,16 +41,6 @@ public class ContactDao {
     return dao;
   }
   // 외부에서 ContactDao.getDao() 로 dao를 부를 수 있다. 이는 멤버변수가 static이기 때문이며, dao가 static이기 때문에 getDao도 static을 사용한다.
-  // 클래스 변수?
-  //  클래스 변수는 인스턴스 변수에 static만 붙여주면 됩니다.
-  // 인스턴스 변수?
-  //  인스턴스 변수는 인스턴스가 생성될 때 생성됩니다. 그렇기 때문에 인스턴스 변수의 값을 읽어오거나 저장하려면 인스턴스를 먼저 생성해야합니다. 
-  // 인스턴스 별로 다른 값을 가질 수 있으므로, 각각의 인스턴스마다 고유의 값을 가져야할 때는 인스턴스 변수로 선언합니다.
-  // 인스턴스 변수는 각각 고유한 값을 가지지만 클래스 변수는 모든 인스턴스가 공통된 값을 공유하게 됩니다. 
-  // 한 클래스의 모든 인스턴스들이 공통적인 값을 가져야할 때 클래스 변수로 선언합니다. 
-  // 클래스가 로딩될 때 생성되어(그러므로 메모리에 딱 한번만 올라갑니다.) 
-  // 종료 될 때 까지 유지되는 클래스 변수는 public 을 붙이면 같은 프로그램 내에서 어디서든 접근할 수 있는 전역 변수가 됩니다. 
-  // 또한 인스턴스 변수의 접근법과 다르게 인스턴스를 생성하지 않고 클래스이름.클래스변수명 을 통해서 접근할 수 있습니다.
   
   private Connection con;
   private PreparedStatement ps;
@@ -187,7 +176,7 @@ public class ContactDao {
     try {
       
       con = getConnection();
-      String sql = "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS FROM CONTACT_T ORDER BY CONTACT_NO ASC";
+      String sql = "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS, CREATED_AT FROM CONTACT_T ORDER BY CONTACT_NO ASC";
       ps = con.prepareStatement(sql);
       rs = ps.executeQuery();
       while(rs.next()) {
@@ -211,6 +200,40 @@ public class ContactDao {
     
   }
   
+  /**
+   * 상세 조회 메소드<br>
+   * @param contact_no 조회할 연락처 번호
+   * @return contactDto 조회된 연락처 정보, 조회된 연락처가 없으면 null 반환
+   */
+  public ContactDto selectContactByNo(int contact_no) {
+    
+    ContactDto contactDto = null;
+    
+    try {
+      
+      con = getConnection();
+      String sql = "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS, CREATED_AT FROM CONTACT_T WHERE CONTACT_NO = ?";
+      ps = con.prepareStatement(sql);
+      ps.setInt(1, contact_no);
+      rs = ps.executeQuery();
+      if(rs.next()) {
+        contactDto = new ContactDto();
+        contactDto.setContact_no(rs.getInt(1));
+        contactDto.setName(rs.getString(2));
+        contactDto.setTel(rs.getString(3));
+        contactDto.setEmail(rs.getString(4));
+        contactDto.setAddress(rs.getString(5));
+        contactDto.setCreated_at(rs.getString(6));
+      }
+      
+    } catch(Exception e) {
+      e.printStackTrace();
+    } finally {
+      close();
+    }
+    
+    return contactDto;
+  }
   
   
 }
