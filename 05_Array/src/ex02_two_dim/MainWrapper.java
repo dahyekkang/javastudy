@@ -177,6 +177,6 @@ public class MainWrapper {
   
   
   public static void main(String[] args) {
-    ex06();
+    ex01();
   }
 }
