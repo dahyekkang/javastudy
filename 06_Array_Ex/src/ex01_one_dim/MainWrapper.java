@@ -52,10 +52,10 @@ public class MainWrapper {
     // 배열 a: [10, 20, 30, 40, 50, 60]
     int[] a = {10, 20, 30, 0, 0, 0};
     int[] b = {40, 50, 60};
-    // System.arraycopy(b, 0, a, 3, b.length);
-    for(int i = 0; i < b.length; i++) {
-      a[3 + i] = b[i];
-    }
+    System.arraycopy(b, 0, a, 3, b.length);
+//    for(int i = 0; i < b.length; i++) {
+//      a[3 + i] = b[i];
+//    }
     System.out.println("배열 a: " + Arrays.toString(a));
   }
   
@@ -67,7 +67,7 @@ public class MainWrapper {
     int[] binary = new int[10];  // │ 0 │ 0 │ 0 │ 0 │ 1 │ 0 │ 0 │ 0 │ 1 │ 1 │
                                  // └------------------------------------------------┘
 
-    System.out.print("10진수 " + number + " = 2진수 " );
+    System.out.print("10진수 " + number + " = 2진수 ");
     int i = 9;
     while(number != 0) {  // while(number > 0)
       binary[i--] = number % 2;
@@ -147,13 +147,13 @@ public class MainWrapper {
   }
   
   public static void main(String[] args) {
-    ex01();
-    ex02();
-    ex03();
-    ex04();
+    //ex01();
+    //ex02();
+    //ex03();
+    //ex04();
     ex05();
-    ex06();
-    ex06_2();
+    //ex06();
+    //ex06_2();
   }
   
 }
